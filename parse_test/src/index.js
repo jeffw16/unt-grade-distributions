@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         complete: function() {
             console.log('done');
             console.log(data);
+            document.getElementById("status").innerHTML = "done! check your console.";
         }
     });
 });
