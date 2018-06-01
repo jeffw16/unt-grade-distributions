@@ -52,9 +52,73 @@
                 <p>Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.</p>
               </div>
               <div class="col-md-3">
-                <h2>Download data</h2>
-                <p><b>Our website is not yet ready</b>. However, you are more than welcome to download the raw data we received from the registrar's office.</p>
-                <p><a href="UNT_Grade_Distribution_Request_2017-2018.xlsx">Download raw data for Fall 2017 to Spring 2018 here</a>.</p>
+                <h2>Instructions</h2>
+                <p>Select the semester you are interested in, and type in either the subject and course number or the instructor.</p>
+                <p>Relevant sections will show up below the search form. Select the section you want to view and see its graph appear to the right.</p>
+              </div>
+              <div class="col-md-3">
+                <!-- nothing -->
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-3">
+                <!-- Query -->
+                <h2>Search and select</h2>
+                <div class="form-group">
+                  <label for="semester">Semester</label>
+                  <select name="semester" id="semester">
+                    <option value="1178">2017 Fall</option>
+                    <option value="1181">2018 Spring</option>
+                  </select>
+                </div>
+                <div class="well well-sm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="course">Course number</label>
+                        <input type="text" class="form-control" name="course" id="course" placeholder="1710" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="well well-sm">
+                  <div class="form-group">
+                    <label for="instructor">Instructor</label>
+                    <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" />
+                  </div>
+                </div>
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+              </div>
+              <div class="col-md-3">
+                <!-- Results -->
+                <h2>Results</h2>
+                <div id="chart" style="width:100%; height:400px;"></div>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <!-- nothing -->
+              </div>
+              <div class="col-md-3">
+                <h2>Downloading data</h2>
+                <p>The grade distribution data we have is freely available for your perusal.</p>
+                <ul>
+                  <li><a href="data/1178.csv">1178 - 2017 Fall</a></li>
+                  <li><a href="data/1181.csv">1181 - 2018 Spring</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h2>Donating to the cause</h2>
+                <p>Grade distributions cost $69.16 per semester to retrieve from the UNT Registrar's Office. Your donations directly fund future grade distribution requests and help students like you choose the best classes.</p>
               </div>
               <div class="col-md-3">
                 <!-- nothing -->
@@ -63,7 +127,7 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8">
-                <p style="text-align: center;">&copy; 2018 UNT Grade Distributions. Not affiliated with or sponsored by the University of North Texas. All rights reserved.</p>
+                <p style="text-align: center;">&copy; 2018. All rights reserved.</p>
               </div>
               <div class="col-md-2"></div>
             </div>
