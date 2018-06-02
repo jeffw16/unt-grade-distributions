@@ -69,8 +69,8 @@
                 <div class="form-group">
                   <label for="semester">Semester</label>
                   <select name="semester" id="semester">
-                    <option value="1178">2017 Fall</option>
-                    <option value="1181">2018 Spring</option>
+                    <option value="2017 Fall">2017 Fall - 1178</option>
+                    <option value="2018 Spring">2018 Spring - 1181</option>
                   </select>
                 </div>
                 <div class="well well-sm">
@@ -95,7 +95,7 @@
                     <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" />
                   </div>
                 </div>
-                <button class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                <button class="btn btn-primary" onclick="findClasses()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
               </div>
               <div class="col-md-3">
                 <!-- Results -->
@@ -127,7 +127,7 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8">
-                <p style="text-align: center;">&copy; 2018. All rights reserved.</p>
+                <p style="text-align: center;">&copy; 2018 UNT Grade Distributions. Not affiliated with or sponsored by the University of North Texas. All rights reserved.</p>
               </div>
               <div class="col-md-2"></div>
             </div>
@@ -137,11 +137,42 @@
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://kripken.github.io/sql.js/js/sql.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script>
-    $(function () {
+    function findClasses() {
+      var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/09176222/static/UNT.db', true);
+        xhr.responseType = 'arraybuffer';
+
+        xhr.onload = function(e) {
+          var uInt8Array = new Uint8Array(this.response);
+          var db = new SQL.Database(uInt8Array);
+          var contents = db.exec(generateQuery());
+          console.log(contents);
+        };
+        xhr.send();
+    }
+
+    function generateQuery() {
+      var query = "SELECT * FROM UNT";
+
+      var semester = document.getElementById('semester').value;
+      var subject = document.getElementById('subject').value;
+      var course = document.getElementById('course').value;
+      var instructor = document.getElementById('instructor').value;
+      console.log( "HELLO" + semester + " " + subject + " " + course + " " + instructor );
+
+      query += " WHERE Term LIKE '%" + semester + "%'";
+      query += " AND Subject LIKE '%" + subject + "%'";
+      query += " AND Catalog LIKE '%" + course + "%'"; // not sure why it's called Catalog, but okay
+      query += " AND Instructor LIKE '%" + instructor + "%';";
+      return query;
+    }
+
+    function compileChart() {
         var myChart = Highcharts.chart('chart', {
             chart: {
               type: 'column'
@@ -174,7 +205,7 @@
               ]
             }]
         });
-    });
+    }
     /*
     Highcharts.chart('container', {
         chart: {
