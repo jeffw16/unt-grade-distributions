@@ -159,14 +159,12 @@
           var uInt8Array = new Uint8Array(this.response);
           var db = new SQL.Database(uInt8Array);
           var contents = db.exec(generateQuery());
-          console.log(contents);
           var select_result = document.getElementById('select_result');
           if ( contents.length == 0 ) {
             select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
           } else {
             select_result.innerHTML = "";
             for ( var i = 0; i < contents[0]['values'].length; i++ ) {
-              console.log(contents[0]['values'][i][1] + " " + contents[0]['values'][i][2] + "." + contents[0]['values'][i][3] + " " + contents[0]['values'][i][4] + " (" + contents[0]['values'][i][5] + ") - " + contents[0]['values'][i][0]);
               var item = document.createElement('li');
               let entry = contents[0]['values'][i]; // use "let" instead of "var" so variable scope is local
   			  		item.appendChild(document.createTextNode(formatResult(entry)));
