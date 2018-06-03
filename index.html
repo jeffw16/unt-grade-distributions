@@ -52,12 +52,77 @@
                 <p>Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.</p>
               </div>
               <div class="col-md-3">
-                <h2>Temporary data visualizer</h2>
-                <p>A <u>temporary</u> website that visualizes the data is now available. <a href="https://jeffw.xyz/public/untgradedistributions_temp">Please visit this link</a>.</p>
-                <h2>Download data</h2>
-                <p><b>Our website is not yet ready</b>. However, you are more than welcome to download the raw data we received from the registrar's office.</p>
-                <p>Please consider making a donation to the cause! Send $1 or more to our project leader's Venmo: @jeffw16. We paid $69.16 for this set of data. All excess money will be used to fund future semesters' requests.</p>
-                <p><a href="static/UNT_Grade_Distribution_Request_2017-2018.xlsx">Download raw data for Fall 2017 to Spring 2018 here</a>.</p>
+                <h2>Instructions</h2>
+                <p>Select the semester you are interested in, and type in either the subject and course number or the instructor.</p>
+                <p>Relevant sections will show up below the search form. Select the section you want to view and see its graph appear to the right.</p>
+              </div>
+              <div class="col-md-3">
+                <!-- nothing -->
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3">
+                <!-- Query -->
+                <h2>Search</h2>
+                <div class="form-group">
+                  <label for="semester">Semester</label>
+                  <select name="semester" id="semester">
+                    <option value="2017 Fall">2017 Fall - 1178</option>
+                    <option value="2018 Spring">2018 Spring - 1181</option>
+                  </select>
+                </div>
+                <div class="well well-sm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="course">Course number</label>
+                        <input type="text" class="form-control" name="course" id="course" placeholder="1710" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="well well-sm">
+                  <div class="form-group">
+                    <label for="instructor">Instructor</label>
+                    <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" />
+                  </div>
+                </div>
+                <button class="btn btn-primary" onclick="findClasses()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                <h2>Select</h2>
+                <ul id="select_result"></ul>
+              </div>
+              <div class="col-md-5">
+                <!-- Results -->
+                <h2>Results</h2>
+                <div id="chart" style="width:100%; height:400px;"></div>
+                <div id="chart2" style="width:100%; height:400px;"></div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <!-- nothing -->
+              </div>
+              <div class="col-md-3">
+                <h2>Downloading data</h2>
+                <p>The grade distribution data we have is freely available for your perusal.</p>
+                <ul>
+                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distribution_Request_2017-2018.csv">CSV</a></li>
+                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distribution_Request_2017-2018.xlsx">XLSX (Excel)</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h2>Donating to the cause</h2>
+                <p>Grade distributions cost $69.16 per semester to retrieve from the UNT Registrar's Office. Your donations directly fund future grade distribution requests and help students like you choose the best classes.</p>
+                <p>Send $1 or more to our project leader's Venmo: @jeffw16. All excess money will be used to fund future semesters' requests.</p>
               </div>
               <div class="col-md-3">
                 <!-- nothing -->
@@ -66,7 +131,8 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8">
-                <p style="text-align: center;">&copy; 2018 UNT Grade Distributions. Not affiliated with or sponsored by the University of North Texas. All rights reserved.</p>
+                <p style="text-align: center;">&copy; 2018 UNT Grade Distributions Team. Not affiliated with or sponsored by the University of North Texas. Inspired by UT Catalyst Grade Distributions.</p>
+                <p style="text-align: center;">Old tool located at <a href="https://jeffw.xyz/public/untgradedistributions_temp">this link</a>.</p>
               </div>
               <div class="col-md-2"></div>
             </div>
@@ -76,20 +142,91 @@
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://kripken.github.io/sql.js/js/sql.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script>
-    $(function () {
-        var myChart = Highcharts.chart('chart', {
+    function findClasses() {
+      var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/09176222/static/UNT.db', true);
+        xhr.responseType = 'arraybuffer';
+
+        xhr.onload = function(e) {
+          var uInt8Array = new Uint8Array(this.response);
+          var db = new SQL.Database(uInt8Array);
+          var contents = db.exec(generateQuery());
+          console.log(contents);
+          var select_result = document.getElementById('select_result');
+          if ( contents.length == 0 ) {
+            select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
+          } else {
+            select_result.innerHTML = "";
+            for ( var i = 0; i < contents[0]['values'].length; i++ ) {
+              console.log(contents[0]['values'][i][1] + " " + contents[0]['values'][i][2] + "." + contents[0]['values'][i][3] + " " + contents[0]['values'][i][4] + " (" + contents[0]['values'][i][5] + ") - " + contents[0]['values'][i][0]);
+              var item = document.createElement('li');
+              let entry = contents[0]['values'][i]; // use "let" instead of "var" so variable scope is local
+  			  		item.appendChild(document.createTextNode(formatResult(entry)));
+  			  		item.style.color = "#2f843e";
+  			  		item.onclick = function(){ compileChart(entry); };
+  			  		document.getElementById('select_result').append(item);
+            }
+          }
+        };
+        xhr.send();
+    }
+
+    function generateQuery() {
+      var query = "SELECT * FROM UNT";
+
+      var semester = document.getElementById('semester').value;
+      var subject = document.getElementById('subject').value;
+      var course = document.getElementById('course').value;
+      var instructor = document.getElementById('instructor').value;
+
+      query += " WHERE Term LIKE '%" + semester + "%'";
+      query += " AND Subject LIKE '%" + subject + "%'";
+      query += " AND Catalog LIKE '%" + course + "%'"; // not sure why it's called Catalog, but okay
+      query += " AND Instructor LIKE '%" + instructor + "%';";
+      return query;
+    }
+
+    function formatResult( result ) {
+			return result[1] + " " + result[2] + "." + result[3] + " " + result[4] + " (" + result[5] + ") - " + result[0];
+		}
+
+
+    function compileChart( result ) {
+      var subject = result[1];
+      var course_code = result[2];
+      var section = result[3];
+      var course_name = result[4];
+      var instructor = result[5];
+      var semester = result[0];
+      var true_total_enrollment = result[6];
+      var num_a = parseFloat(result[7]);
+      var num_b = parseFloat(result[8]);
+      var num_c = parseFloat(result[9]);
+      var num_d = parseFloat(result[10]);
+      var num_f = parseFloat(result[11]);
+      var total_enrollment = num_a + num_b + num_c + num_d + num_f;
+      var p_a = num_a / total_enrollment * 100;
+      var p_b = num_b / total_enrollment * 100;
+      var p_c = num_c / total_enrollment * 100;
+      var p_d = num_d / total_enrollment * 100;
+      var p_f = num_f / total_enrollment * 100;
+      var myChart = Highcharts.chart('chart', {
             chart: {
               type: 'column'
             },
             title: {
-              text: 'Grade Distribution for MATH 1710'
+              text: subject + ' ' + course_code + '.' + section + ' (' + instructor + ') - Percentages'
+            },
+            subtitle:{
+              text: course_name + ' - ' + semester
             },
             legend: {
-              enabled: false,
+              enabled: false
             },
             xAxis: {
               title: {
@@ -98,83 +235,76 @@
               categories: ['A', 'B', 'C', 'D', 'F']
             },
             yAxis: {
+              min: 0,
+              max: 100,
               title: {
                 text: 'Percent of letter grade'
               }
             },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.2f}%</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
             series: [{
-              name: 'Grades',
+              name: 'Percentage',
               data: [
-                {y: 50, color: '#30c737'},
-                {y: 25, color: '#93d10d'},
-                {y: 12.5, color: '#ffe14d'},
-                {y: 6.25, color: '#ffad33'},
-                {y: 6.25, color: '#ff704d'}
+                {y: p_a, color: '#30c737'},
+                {y: p_b, color: '#93d10d'},
+                {y: p_c, color: '#ffe14d'},
+                {y: p_d, color: '#ffad33'},
+                {y: p_f, color: '#ff704d'}
               ]
             }]
         });
-    });
-    /*
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: dep + " " + cls
-        },
-        subtitle: {
-            text: sem + " - " + professor
-        },
-        legend: {
-            enabled: false
-        },
-        xAxis: {
+        var myChart2 = Highcharts.chart('chart2', {
+              chart: {
+                type: 'column'
+              },
+              title: {
+                text: subject + ' ' + course_code + '.' + section + ' (' + instructor + ') - Raw numbers'
+              },
+              subtitle:{
+                text: course_name + ' - ' + semester
+              },
+              legend: {
+                enabled: false
+              },
+              xAxis: {
                 title: {
-                text: 'Grades'
-            },
-            categories: [
-                'A',
-                'A-',
-                'B+',
-                'B',
-                'B-',
-                'C+',
-                'C',
-                'C-',
-                'D+',
-                'D',
-                'D-',
-                'F'
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Students'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} Students</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Grades',
-            data: [{y: data[6], color: '#99ff99'}, {y: data[7], color: '#ccff99'}, {y: data[8], color: '#ffe14d'}, {y: data[9], color: '#ffad33'}, {y: data[10], color: '#ff704d'}, {y: data[11], color: '#ff704d'}, {y: data[12], color: '#ff704d'}, {y: data[13], color: '#ff704d'}, {y: data[14], color: '#ff704d'}, {y: data[15], color: '#ff704d'}, {y: data[16], color: '#ff704d'}, {y: data[17], color: '#ff704d'}]
-
-        }]
-    });
-    */
+                  text: 'Grades'
+                },
+                categories: ['A', 'B', 'C', 'D', 'F', 'I', 'W', 'WF'],
+                crosshair: true
+              },
+              yAxis: {
+                title: {
+                  text: 'Students'
+                }
+              },
+              tooltip: {
+      		        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      		        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      		            '<td style="padding:0"><b>{point.y:.0f} students</b></td></tr>',
+      		        footerFormat: '</table>',
+      		        shared: true,
+      		        useHTML: true
+      		    },
+              series: [{
+                name: 'Students',
+                data: [
+                  {y: num_a, color: '#30c737'},
+                  {y: num_b, color: '#93d10d'},
+                  {y: num_c, color: '#ffe14d'},
+                  {y: num_d, color: '#ffad33'},
+                  {y: num_f, color: '#ff704d'}
+                ]
+              }]
+          });
+    }
     </script>
   </body>
 </html>
