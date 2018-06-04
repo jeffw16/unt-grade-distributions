@@ -5,11 +5,11 @@ var CSV_PATH = 'http://localhost/unt-grade-distributions/static/UNT_Grade_Distri
 function sameClass(a, b){
     return (
             a.term === b.term
-        &&  a.subject === b.subject
-        &&  a.catalog === b.catalog
-        &&  a.section === b.section
+        &&  a.subj === b.subj
+        &&  a.num === b.num
+        &&  a.sect === b.sect
     );
-}
+};
 
 document.addEventListener("DOMContentLoaded", function(event) {
     var rowNum = 0;
@@ -17,16 +17,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     Papa.parse(CSV_PATH, {
         download: true,
         header: true,
-        worker: true,
         step: function(row, errors) {
             var rowData = row.data[0];
             var item = {
                 term: rowData.Term,
-                subject: rowData.Subject,
-                catalog: rowData.Catalog,
-                section: rowData.Section,
-                description: rowData.Descr,
-                professor: rowData.Name,
+                subj: rowData.Subject,
+                num: rowData.Catalog,
+                sect: rowData.Section,
+                desc: rowData.Descr,
+                prof: rowData.Name,
                 grades: {}
             };
             var letterGrade = rowData.Grade;
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         complete: function() {
             console.log('done');
             console.log(data);
-            document.getElementById("status").innerHTML = "done! check your console.";
+            document.write(JSON.stringify(data));
         }
     });
 });
