@@ -79,37 +79,38 @@
                     <option value="2018 Spring">2018 Spring - 1181</option>
                   </select>
                 </div>
-                <div class="well well-sm">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" />
-                      </div>
+                <form onsubmit="findClasses()" action="javascript:void(0)">
+                    <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" />
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="course">Course number</label>
+                            <input type="text" class="form-control" name="course" id="course" placeholder="1710" />
+                        </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="course">Course number</label>
-                        <input type="text" class="form-control" name="course" id="course" placeholder="1710" />
-                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="well well-sm">
-                  <div class="form-group">
-                    <label for="instructor">Instructor</label>
-                    <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" />
-                  </div>
-                </div>
-                <button class="btn btn-primary" onclick="findClasses()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                    <div class="well well-sm">
+                    <div class="form-group">
+                        <label for="instructor">Instructor</label>
+                        <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" />
+                    </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                </form>
                 <h2>Select</h2>
-                <ul id="select_result"></ul>
+                <ul id="select_result">Your search results will be displayed here.</ul>
               </div>
               <div class="col-md-5">
                 <!-- Results -->
                 <h2>Results</h2>
-                <div id="chart" style="width:100%; height:400px;"></div>
-                <div id="chart2" style="width:100%; height:400px;"></div>
+                <div id="chart" style="width:100%; height:400px;">Your graph will be displyed here.</div>
               </div>
               <div class="col-md-2"></div>
             </div>
@@ -204,7 +205,7 @@
       query += " WHERE Term LIKE '%" + semester + "%'";
       query += " AND Subject LIKE '%" + subject + "%'";
       query += " AND Catalog LIKE '%" + course + "%'"; // not sure why it's called Catalog, but okay
-      query += " AND Instructor LIKE '%" + instructor + "%';";
+      query += " AND Instructor LIKE '%" + instructor + "%' COLLATE NOCASE;";
       return query;
     }
 
@@ -212,32 +213,17 @@
         return result[1] + " " + result[2] + "." + result[3] + " " + result[4] + " (" + result[5] + ") - " + result[0];
     }
 
-
     function compileChart( result ) {
-        var subject = result[1];
-        var course_code = result[2];
-        var section = result[3];
-        var course_name = result[4];
-        var instructor = result[5];
-        var semester = result[0];
-        var true_total_enrollment = result[6];
-        var num_a = parseFloat(result[7]);
-        var num_b = parseFloat(result[8]);
-        var num_c = parseFloat(result[9]);
-        var num_d = parseFloat(result[10]);
-        var num_f = parseFloat(result[11]);
-        var total_enrollment = num_a + num_b + num_c + num_d + num_f;
-        var p_a = num_a / total_enrollment * 100;
-        var p_b = num_b / total_enrollment * 100;
-        var p_c = num_c / total_enrollment * 100;
-        var p_d = num_d / total_enrollment * 100;
-        var p_f = num_f / total_enrollment * 100;
+        var [semester, subject, course_code, section, course_name, instructor, true_total_enrollment] = result;
+        var nums = result.slice(7, 12).map(parseFloat);
+        var colors = ['#30c737', '#93d10d', '#ffe14d', '#ffad33', '#ff704d'];
+        var total = nums.reduce((a, b) => a+b, 0);
         var myChart = Highcharts.chart('chart', {
             chart: {
               type: 'column'
             },
             title: {
-              text: subject + ' ' + course_code + '.' + section + ' (' + instructor + ') - Percentages'
+              text: subject + ' ' + course_code + '.' + section + ' (' + instructor + ')'
             },
             subtitle:{
               text: course_name + ' - ' + semester
@@ -252,75 +238,33 @@
               categories: ['A', 'B', 'C', 'D', 'F']
             },
             yAxis: {
-              min: 0,
-              max: 100,
               title: {
-                text: 'Percent of letter grade'
+                text: 'Students'
               }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.2f}%</b></td></tr>',
+                pointFormat: `
+                    <tr>
+                        <td style="color:{series.color};padding:0">{series.name}: </td>
+                        <td style="padding:0"><b>{point.y}</b></td>
+                    </tr>
+                    <tr>
+                        <td style="color:{series.color};padding:0">Percentage: </td>
+                        <td style="padding:0"><b>{point.percentage:.2f}%</b></td>
+                    </tr>
+                    `,
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
             series: [{
-              name: 'Percentage',
-              data: [
-                {y: p_a, color: '#30c737'},
-                {y: p_b, color: '#93d10d'},
-                {y: p_c, color: '#ffe14d'},
-                {y: p_d, color: '#ffad33'},
-                {y: p_f, color: '#ff704d'}
-              ]
+              name: 'Students',
+              data: nums.map((num, i) => {
+                  return {y: num, color: colors[i], percentage: num/total*100};
+              })
             }]
         });
-        var myChart2 = Highcharts.chart('chart2', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: subject + ' ' + course_code + '.' + section + ' (' + instructor + ') - Raw numbers'
-              },
-              subtitle:{
-                text: course_name + ' - ' + semester
-              },
-              legend: {
-                enabled: false
-              },
-              xAxis: {
-                title: {
-                  text: 'Grades'
-                },
-                categories: ['A', 'B', 'C', 'D', 'F', 'I', 'W', 'WF'],
-                crosshair: true
-              },
-              yAxis: {
-                title: {
-                  text: 'Students'
-                }
-              },
-              tooltip: {
-      		        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-      		        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-      		            '<td style="padding:0"><b>{point.y:.0f} students</b></td></tr>',
-      		        footerFormat: '</table>',
-      		        shared: true,
-      		        useHTML: true
-      		    },
-              series: [{
-                name: 'Students',
-                data: [
-                  {y: num_a, color: '#30c737'},
-                  {y: num_b, color: '#93d10d'},
-                  {y: num_c, color: '#ffe14d'},
-                  {y: num_d, color: '#ffad33'},
-                  {y: num_f, color: '#ff704d'}
-                ]
-              }]
-          });
     }
     </script>
   </body>
