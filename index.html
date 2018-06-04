@@ -156,31 +156,41 @@
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script>
-    function findClasses() {
-      var xhr = new XMLHttpRequest();
+    document.addEventListener('DOMContentLoaded', function(){
+        var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/09176222/static/UNT.db', true);
         xhr.responseType = 'arraybuffer';
-
         xhr.onload = function(e) {
-          var uInt8Array = new Uint8Array(this.response);
-          var db = new SQL.Database(uInt8Array);
-          var contents = db.exec(generateQuery());
-          var select_result = document.getElementById('select_result');
-          if ( contents.length == 0 ) {
-            select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
-          } else {
-            select_result.innerHTML = "";
-            for ( var i = 0; i < contents[0]['values'].length; i++ ) {
-              var item = document.createElement('li');
-              let entry = contents[0]['values'][i]; // use "let" instead of "var" so variable scope is local
-  			  		item.appendChild(document.createTextNode(formatResult(entry)));
-  			  		item.style.color = "#2f843e";
-  			  		item.onclick = function(){ compileChart(entry); };
-  			  		document.getElementById('select_result').append(item);
+            var uInt8Array = new Uint8Array(this.response);
+            window.db = new SQL.Database(uInt8Array);
+            if(window.waiting){
+                findClasses();
             }
-          }
         };
         xhr.send();
+    })
+    function findClasses() {
+        var select_result = document.getElementById('select_result');
+        select_result.innerHTML = "loading...";
+        if(!window.db){
+            window.loading = true;
+            return;
+        }
+        var contents = window.db.exec(generateQuery());
+        if ( contents.length == 0 ) {
+            select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
+        } else {
+            select_result.innerHTML = "";
+            for ( var i = 0; i < contents[0]['values'].length; i++ ) {
+                var item = document.createElement('li');
+                let entry = contents[0]['values'][i]; // use "let" instead of "var" so variable scope is local
+                item.appendChild(document.createTextNode(formatResult(entry)));
+                item.style.color = "#2f843e";
+                item.style.cursor = 'pointer';
+                item.onclick = function(){ compileChart(entry); };
+                document.getElementById('select_result').append(item);
+            }
+        }
     }
 
     function generateQuery() {
@@ -199,30 +209,30 @@
     }
 
     function formatResult( result ) {
-			return result[1] + " " + result[2] + "." + result[3] + " " + result[4] + " (" + result[5] + ") - " + result[0];
-		}
+        return result[1] + " " + result[2] + "." + result[3] + " " + result[4] + " (" + result[5] + ") - " + result[0];
+    }
 
 
     function compileChart( result ) {
-      var subject = result[1];
-      var course_code = result[2];
-      var section = result[3];
-      var course_name = result[4];
-      var instructor = result[5];
-      var semester = result[0];
-      var true_total_enrollment = result[6];
-      var num_a = parseFloat(result[7]);
-      var num_b = parseFloat(result[8]);
-      var num_c = parseFloat(result[9]);
-      var num_d = parseFloat(result[10]);
-      var num_f = parseFloat(result[11]);
-      var total_enrollment = num_a + num_b + num_c + num_d + num_f;
-      var p_a = num_a / total_enrollment * 100;
-      var p_b = num_b / total_enrollment * 100;
-      var p_c = num_c / total_enrollment * 100;
-      var p_d = num_d / total_enrollment * 100;
-      var p_f = num_f / total_enrollment * 100;
-      var myChart = Highcharts.chart('chart', {
+        var subject = result[1];
+        var course_code = result[2];
+        var section = result[3];
+        var course_name = result[4];
+        var instructor = result[5];
+        var semester = result[0];
+        var true_total_enrollment = result[6];
+        var num_a = parseFloat(result[7]);
+        var num_b = parseFloat(result[8]);
+        var num_c = parseFloat(result[9]);
+        var num_d = parseFloat(result[10]);
+        var num_f = parseFloat(result[11]);
+        var total_enrollment = num_a + num_b + num_c + num_d + num_f;
+        var p_a = num_a / total_enrollment * 100;
+        var p_b = num_b / total_enrollment * 100;
+        var p_c = num_c / total_enrollment * 100;
+        var p_d = num_d / total_enrollment * 100;
+        var p_f = num_f / total_enrollment * 100;
+        var myChart = Highcharts.chart('chart', {
             chart: {
               type: 'column'
             },
