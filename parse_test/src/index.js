@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             };
             var letterGrade = rowData.Grade;
             item.grades[letterGrade] = rowData['Actual Number'];
+            if(letterGrade == ''){
+                return;
+            }
             
             if(data.length && sameClass(item, data[data.length-1])){
                 //this class is part of a course group
