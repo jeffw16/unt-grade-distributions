@@ -23,7 +23,7 @@ function escapeRegex(str) {
 
 //creates a new regexp that checks if a string is contained within the input.
 function generateContainsRegex(str){
-    return new RegExp(str, 'i');
+    return new RegExp(esacpeRegex(str), 'i');
 }
 
 function findClasses() {
