@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 grades: {}
             };
             var letterGrade = rowData.Grade;
-            item.grades[letterGrade] = rowData['Actual Number'];
+            item.grades[letterGrade] = rowData['Actual Count'];
             if(letterGrade == ''){
                 return;
             }
