@@ -85,13 +85,13 @@
                         <div class="col-md-6">
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" />
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" oninput="instantFind()"/>
                         </div>
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
                             <label for="course">Course number</label>
-                            <input type="text" class="form-control" name="course" id="course" placeholder="1710" />
+                            <input type="text" class="form-control" name="course" id="course" placeholder="1710" oninput="instantFind()"/>
                         </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                     <div class="well well-sm">
                     <div class="form-group">
                         <label for="instructor">Instructor</label>
-                        <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" />
+                        <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" oninput="instantFind()"/>
                     </div>
                     </div>
                     <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
@@ -120,13 +120,14 @@
               </div>
               <div class="col-md-4">
                 <h2>Downloading data</h2>
-                <p>The grade distribution data we have is freely available for your perusal.</p>
+                <p>The grade distribution data we have is freely available for your perusal in several formats. The original format we received from the registrar was Excel.</p>
                 <ul>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distribution_Request_2017-2018.csv">CSV (old incomplete version)</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions_Request_2017-2018_Complete.xlsx">XLSX (Excel) (updated complete version)</a></li>
+                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distribution_Request_2017-2018.csv">CSV</a></li>
+                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions_Request_2017-2018_Complete.xlsx">XLSX (Excel)</a></li>
+                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/complete.json">JSON</a></li>
                 </ul>
                 <h2>Developer's notes</h2>
-                <p>The set of data loaded on our website is incomplete. The updated, complete set is now available for download as an XLSX file.</p>
+                <p><u>Update June 5, 2018, 1:45am</u>: The registrar's office has now provided us with a complete set of data for Fall 2017 and Spring 2018. The data should now be loaded in. Furthermore, we have added iterative search and completely revamped our backend.</p>
                 <p>New features are still being added to our website. If you want to join the development team, email the lead developer at his email address <a href="mailto:jeffreywang@my.unt.edu">jeffreywang@my.unt.edu</a>.</p>
               </div>
               <div class="col-md-4">
@@ -152,120 +153,10 @@
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://kripken.github.io/sql.js/js/sql.js"></script>
+    <script src="nedb.min.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function(){
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/09176222/static/UNT.db', true);
-        xhr.responseType = 'arraybuffer';
-        xhr.onload = function(e) {
-            var uInt8Array = new Uint8Array(this.response);
-            window.db = new SQL.Database(uInt8Array);
-            if(window.waiting){
-                findClasses();
-            }
-        };
-        xhr.send();
-    })
-    function findClasses() {
-        var select_result = document.getElementById('select_result');
-        select_result.innerHTML = "loading...";
-        if(!window.db){
-            window.loading = true;
-            return;
-        }
-        var contents = window.db.exec(generateQuery());
-        if ( contents.length == 0 ) {
-            select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
-        } else {
-            select_result.innerHTML = "";
-            for ( var i = 0; i < contents[0]['values'].length; i++ ) {
-                var item = document.createElement('li');
-                let entry = contents[0]['values'][i]; // use "let" instead of "var" so variable scope is local
-                item.appendChild(document.createTextNode(formatResult(entry)));
-                item.style.color = "#2f843e";
-                item.style.cursor = 'pointer';
-                item.onclick = function(){ compileChart(entry); };
-                document.getElementById('select_result').append(item);
-            }
-        }
-    }
-
-    function generateQuery() {
-      var query = "SELECT * FROM UNT";
-
-      var semester = document.getElementById('semester').value;
-      var subject = document.getElementById('subject').value;
-      var course = document.getElementById('course').value;
-      var instructor = document.getElementById('instructor').value;
-
-      query += " WHERE Term LIKE '%" + semester + "%'";
-      query += " AND Subject LIKE '%" + subject + "%'";
-      query += " AND Catalog LIKE '%" + course + "%'"; // not sure why it's called Catalog, but okay
-      query += " AND Instructor LIKE '%" + instructor + "%' COLLATE NOCASE;";
-      return query;
-    }
-
-    function formatResult( result ) {
-        return result[1] + " " + result[2] + "." + result[3] + " " + result[4] + " (" + result[5] + ") - " + result[0];
-    }
-
-    function compileChart( result ) {
-        var [semester, subject, course_code, section, course_name, instructor, true_total_enrollment] = result;
-        var nums = result.slice(7, 12).map(parseFloat);
-        var colors = ['#30c737', '#93d10d', '#ffe14d', '#ffad33', '#ff704d'];
-        var total = nums.reduce((a, b) => a+b, 0);
-        var myChart = Highcharts.chart('chart', {
-            chart: {
-              type: 'column'
-            },
-            title: {
-              text: subject + ' ' + course_code + '.' + section + ' (' + instructor + ')'
-            },
-            subtitle:{
-              text: course_name + ' - ' + semester
-            },
-            legend: {
-              enabled: false
-            },
-            xAxis: {
-              title: {
-                text: 'Grades'
-              },
-              categories: ['A', 'B', 'C', 'D', 'F']
-            },
-            yAxis: {
-              title: {
-                text: 'Students'
-              }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: `
-                    <tr>
-                        <td style="color:{series.color};padding:0">{series.name}: </td>
-                        <td style="padding:0"><b>{point.y}</b></td>
-                    </tr>
-                    <tr>
-                        <td style="color:{series.color};padding:0">Percentage: </td>
-                        <td style="padding:0"><b>{point.percentage:.2f}%</b></td>
-                    </tr>
-                    `,
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            series: [{
-              name: 'Students',
-              data: nums.map((num, i) => {
-                  return {y: num, color: colors[i], percentage: num/total*100};
-              })
-            }]
-        });
-    }
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
