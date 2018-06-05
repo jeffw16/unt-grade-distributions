@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/master/static/complete.json', true);
+    xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/b0b7e7eec9cc282f1a3b37f428275e6ae962c3d1/static/complete.json', true);
     xhr.responseType = 'json';
     // console.log('started loading db');
     xhr.onload = function(e) {
