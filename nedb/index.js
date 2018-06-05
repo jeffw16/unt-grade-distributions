@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', function(){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://cdn.rawgit.com/jeffw16/unt-grade-distributions/master/static/complete.json', true);
     xhr.responseType = 'json';
-    console.log('started loading db');
+    // console.log('started loading db');
     xhr.onload = function(e) {
         window.db = new Nedb();
-        console.log('done loading db');
+        // console.log('done loading db');
         window.db.insert(this.response, (err) =>{
             if(err) console.error(err);
-            console.log('done initializing db');
+            // console.log('done initializing db');
             if(window.waiting){
                 findClasses();
             }
@@ -33,7 +33,7 @@ function instantFind() {
     var professor = document.getElementById('instructor').value;
 
     var count = (!!subject) + (!!num) + 2*(!!professor);
-    console.log(count);
+    // console.log(count);
 
     if(count >= 2) {
         findClasses();
@@ -50,7 +50,7 @@ function findClasses() {
     window.db.find(generateQuery())
         .sort({ subj: 1, num: 1, sect: 1 })
         .exec((err, docs) => {
-            console.log(docs);
+            // console.log(docs);
             if(docs.length == 0){
                 select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
             }else{
@@ -141,8 +141,8 @@ function compileChart( result ) {
           name: 'Students',
           data: Object.values(grades).map((num, i) => {
                 return {
-                    y: parseInt(num), 
-                    color: colors[i] || randomColor(), 
+                    y: parseInt(num),
+                    color: colors[i] || randomColor(),
                     percentage: num/total*100
                 };
           })
