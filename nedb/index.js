@@ -26,6 +26,20 @@ function generateContainsRegex(str){
     return new RegExp(escapeRegex(str), 'i');
 }
 
+//search for classes if enough input is given
+function instantFind() {
+    var subject = document.getElementById('subject').value;
+    var num = document.getElementById('course').value;
+    var professor = document.getElementById('instructor').value;
+
+    var count = (!!subject) + (!!num) + 2*(!!professor);
+    console.log(count);
+
+    if(count >= 2) {
+        findClasses();
+    }
+}
+
 function findClasses() {
     var select_result = document.getElementById('select_result');
     select_result.innerHTML = "loading...";
