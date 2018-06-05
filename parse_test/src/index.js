@@ -11,6 +11,11 @@ function sameClass(a, b){
     );
 };
 
+function processName(name) {
+    var temp = name.split(',');
+    return temp[1] + " " + temp[0];
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
     var rowNum = 0;
     var data = [];
@@ -25,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 num: rowData.Catalog,
                 sect: rowData.Section,
                 desc: rowData.Descr,
-                prof: rowData.Name,
+                prof: processName(rowData.Name),
                 grades: {}
             };
             var letterGrade = rowData.Grade;
