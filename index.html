@@ -74,7 +74,8 @@
                 <h2>Search</h2>
                 <div class="form-group">
                   <label for="semester">Semester</label>
-                  <select name="semester" id="semester">
+                  <select name="semester" id="semester" onfocus="this.selectedIndex = -1;" onchange="instantFind();">
+                    <option value="all">All semesters</option>
                     <option value="2017 Fall">2017 Fall - 1178</option>
                     <option value="2018 Spring">2018 Spring - 1181</option>
                   </select>

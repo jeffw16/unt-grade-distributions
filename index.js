@@ -53,7 +53,7 @@ function findClasses() {
             // console.log(docs);
             if(docs.length == 0){
                 select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
-            }else{
+            } else {
                 select_result.innerHTML = "";
                 for ( var i = 0; i < docs.length; i++ ) {
                     var item = document.createElement('li');
@@ -70,12 +70,14 @@ function findClasses() {
 
 function generateQuery() {
   var query = {
-        term: document.getElementById('semester').value,
+        // term: document.getElementById('semester').value,
         subj: generateContainsRegex(document.getElementById('subject').value),
         num: generateContainsRegex(document.getElementById('course').value),
         prof: generateContainsRegex(document.getElementById('instructor').value),
   };
-
+  if ( document.getElementById('semester').value !== 'all' ) {
+    query['term'] = document.getElementById('semester').value;
+  }
   return query;
 }
 
