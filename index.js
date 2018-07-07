@@ -161,6 +161,11 @@ function compileChart( result ) {
           })
         }]
     });
+    var totalgrades = 0;
+    Object.values(grades).forEach((num) => {
+      totalgrades += parseInt(num);
+    });
+    $('#stats').text('Total grades: ' + totalgrades);
     $('#sharelink').val(window.location.href + '?term=' + encodeURIComponent(term) + '&subj=' + encodeURIComponent(subj) + '&num=' + encodeURIComponent(num) + '&sect=' + encodeURIComponent(sect) + '&desc=' + encodeURIComponent(desc) + '&prof=' + encodeURIComponent(prof) + '&grades=' + encodeURIComponent(btoa(JSON.stringify(grades))));
     $('#share').show();
 }
