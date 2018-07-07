@@ -112,6 +112,13 @@
                 <!-- Results -->
                 <h2>Results</h2>
                 <div id="chart" style="width:100%; height:400px;">Your graph will be displayed here.</div>
+                <div id="share" style="display: none;">
+                  <h2>Share</h2>
+                  <p>Click on the field below and copy the URL to share this specific class with your friends.</p>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="sharelink" id="sharelink" onClick="this.setSelectionRange(0, this.value.length)">
+                  </div>
+                </div>
                 <h2>Grading system key</h2>
                 <ul>
                   <li>A - excellent, B - good, C - fair, D - passing, F - failure</li>
@@ -166,5 +173,20 @@
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="index.js"></script>
+    <script>
+      $(function() {
+        if ( grades !== null ) {
+          var term = getParameterByName('term');
+          var subj = getParameterByName('subj');
+          var num = getParameterByName('num');
+          var sect = getParameterByName('sect');
+          var desc = getParameterByName('desc');
+          var prof = getParameterByName('prof');
+          var grades = JSON.parse(atob(getParameterByName('grades')));
+          var result = {term, subj, num, sect, desc, prof, grades};
+          compileChart( result );
+        }
+      });
+    </script>
   </body>
 </html>
