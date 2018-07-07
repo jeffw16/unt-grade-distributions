@@ -106,10 +106,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-function shareURL( result ) {
-
-}
-
 function compileChart( result ) {
     var {term, subj, num, sect, desc, prof, grades} = result;
     var total = Object.values(grades).reduce((a, b) => a+parseInt(b), 0);
