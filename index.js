@@ -30,9 +30,10 @@ function generateContainsRegex(str){
 function instantFind() {
     var subject = document.getElementById('subject').value;
     var num = document.getElementById('course').value;
+    var desc = document.getElementById('desc').value;
     var professor = document.getElementById('instructor').value;
 
-    var count = (!!subject) + (!!num) + 2*(!!professor);
+    var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
     // console.log(count);
 
     if(count >= 2) {
@@ -73,6 +74,7 @@ function generateQuery() {
         // term: document.getElementById('semester').value,
         subj: generateContainsRegex(document.getElementById('subject').value),
         num: generateContainsRegex(document.getElementById('course').value),
+        desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
         prof: generateContainsRegex(document.getElementById('instructor').value),
   };
   if ( document.getElementById('semester').value !== 'all' ) {
