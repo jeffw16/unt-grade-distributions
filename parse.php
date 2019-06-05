@@ -28,7 +28,7 @@ for ( $i = 1; $i < count( $arr ); $i++ ) {
   $linearr['num'] = utf8_encode($arr[$i][3]);
   $linearr['sect'] = utf8_encode($arr[$i][4]);
   $linearr['desc'] = utf8_encode($arr[$i][5]);
-  if ( $i > 0 && sizeof($narr) > 0 && $arr[$i - 1][2] == $linearr['subj'] && $arr[$i - 1][3] == $linearr['num'] && $arr[$i][4] == $linearr['sect'] ) {
+  if ( $i > 0 && sizeof($narr) > 0 && $arr[$i - 1][2] == $linearr['subj'] && $arr[$i - 1][3] == $linearr['num'] && $arr[$i - 1][4] == $linearr['sect'] ) {
     $narr[sizeof($narr) - 1]['grades'][utf8_encode($arr[$i][9])] = utf8_encode($arr[$i][10]);
   } else {
     $linearr['grades'] = array();
