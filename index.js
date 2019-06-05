@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://cdn.jsdelivr.net/gh/jeffw16/unt-grade-distributions@032635811a166b226d1093723b7f71166e64e1dd/static/complete.json', true);
+    xhr.open('GET', 'https://cdn.jsdelivr.net/gh/jeffw16/unt-grade-distributions@6b4a98d500cfb1a19c8e2880c32758d485d932ab/static/complete.json', true);
     xhr.responseType = 'json';
     // console.log('started loading db');
     xhr.onload = function(e) {
