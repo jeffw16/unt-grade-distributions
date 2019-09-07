@@ -26,6 +26,10 @@
         background-color: #00853E;
         color: #f5f5f5;
       }
+      .results {
+        height: 250px;
+        overflow: auto;  
+      }
     </style>
   </head>
   <body>
@@ -120,7 +124,9 @@
                     <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                 </form>
                 <h2>Select</h2>
+                <div class ="results">
                 <ul id="select_result">Your search results will be displayed here.</ul>
+                </div>
               </div>
               <div class="col-md-5">
                 <!-- Results -->
