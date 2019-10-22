@@ -49,7 +49,7 @@ function findClasses() {
         return;
     }
     window.db.find(generateQuery())
-        .sort({ subj: 1, num: 1, sect: 1 })
+        .sort({ term: -1, subj: 2, num: 3, sect: 4 })
         .exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
