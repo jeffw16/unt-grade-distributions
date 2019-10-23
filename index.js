@@ -49,7 +49,10 @@ function findClasses() {
         return;
     }
     window.db.find(generateQuery())
-        .sort({ term: -1, subj: 2, num: 3, sect: 4 })
+        .sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
+	/*the placement of the query elements above affects the output.
+	example: term gets parsed first and has highest priority in a sense.
+	I then added prof second to alphabetize the ouutput	*/
         .exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
@@ -73,9 +76,12 @@ function generateQuery() {
   var query = {
         // term: document.getElementById('semester').value,
         subj: generateContainsRegex(document.getElementById('subject').value),
-        num: generateContainsRegex(document.getElementById('course').value),
+	num: generateContainsRegex(document.getElementById('course').value),
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
-        prof: generateContainsRegex(document.getElementById('instructor').value),
+	prof: generateContainsRegex(document.getElementById('instructor').value),
+
+//above 1 line of code is testing
+
   };
   if ( document.getElementById('semester').value !== 'all' ) {
     query['term'] = document.getElementById('semester').value;
