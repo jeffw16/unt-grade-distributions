@@ -32,8 +32,8 @@ function instantFind() {
     var num = document.getElementById('course').value;
     var desc = document.getElementById('desc').value;
     var professor = document.getElementById('instructor').value;
-
     var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
+    var pipeString = new String("   |   ");
     // console.log(count);
 
     if(count >= 2) {
@@ -52,7 +52,7 @@ function findClasses() {
         .sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
 	/*the placement of the query elements above affects the output.
 	example: term gets parsed first and has highest priority in a sense.
-	I then added prof second to alphabetize the ouutput	*/
+	I then added prof second to alphabetize the output	*/
         .exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
@@ -80,7 +80,6 @@ function generateQuery() {
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
 	prof: generateContainsRegex(document.getElementById('instructor').value),
 	
-//above 1 line of code is testing
 
   };
   if ( document.getElementById('semester').value !== 'all' ) {
@@ -90,7 +89,8 @@ function generateQuery() {
 }
 
 function formatResult( result ) {
-    return result.subj + " " + result.num + "." + result.sect + " " + result.desc + " (" + result.prof + ") - " + result.term;
+
+    return result.subj +  "  -  "   + result.num + "." + result.sect + "   |   " + result.desc + "  |   (" + result.prof + ")   |   "  + result.term;
 }
 
 function randomColor() {
