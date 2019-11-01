@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function(){
     xhr.send();
 })
 
+
+
 function escapeRegex(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
@@ -33,13 +35,14 @@ function instantFind() {
     var desc = document.getElementById('desc').value;
     var professor = document.getElementById('instructor').value;
     var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
-    var pipeString = new String("   |   ");
     // console.log(count);
 
     if(count >= 2) {
         findClasses();
     }
 }
+
+
 
 function findClasses() {
     var select_result = document.getElementById('select_result');
@@ -83,15 +86,22 @@ function generateQuery() {
 
   };
   if ( document.getElementById('semester').value !== 'all' ) {
-    query['term'] = document.getElementById('semester').value;
+    query['term'] = document.getElementById('semester').value
   }
+
   return query;
 }
 
+
+
+
+
+
 function formatResult( result ) {
 
-    return result.subj +  "  -  "   + result.num + "." + result.sect + "   |   " + result.desc + "  |   (" + result.prof + ")   |   "  + result.term;
+    return result.subj +  "  -  "   + result.num + "." + result.sect + "   |   " + result.desc + "  |   (" + result.prof + ")   |   "  +  result.term
 }
+
 
 function randomColor() {
     var color = '#';
@@ -114,6 +124,7 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+
 function compileChart( result ) {
     var {term, subj, num, sect, desc, prof, grades} = result;
     var total = Object.values(grades).reduce((a, b) => a+parseInt(b), 0);
@@ -126,7 +137,7 @@ function compileChart( result ) {
           text: subj + ' ' + num + '.' + sect + ' (' + prof + ')'
         },
         subtitle:{
-          text: desc + ' - ' + term
+          text: desc + ' - ' +  term
         },
         legend: {
           enabled: false
@@ -177,3 +188,6 @@ function compileChart( result ) {
     $('#sharelink').val(window.location.href + '?term=' + encodeURIComponent(term) + '&subj=' + encodeURIComponent(subj) + '&num=' + encodeURIComponent(num) + '&sect=' + encodeURIComponent(sect) + '&desc=' + encodeURIComponent(desc) + '&prof=' + encodeURIComponent(prof) + '&grades=' + encodeURIComponent(btoa(JSON.stringify(grades))));
     $('#share').show();
 }
+
+
+
