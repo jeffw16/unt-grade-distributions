@@ -77,11 +77,11 @@ function findClasses() {
 
 function generateQuery() {
   var query = {
-        // term: document.getElementById('semester').value,
         subj: generateContainsRegex(document.getElementById('subject').value),
 	num: generateContainsRegex(document.getElementById('course').value),
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
 	prof: generateContainsRegex(document.getElementById('instructor').value),
+<<<<<<< HEAD
 
 	
 
@@ -89,24 +89,18 @@ function generateQuery() {
 
 
 
+=======
+>>>>>>> 28ecd4f9540e29f34770cf6b5f42da399463951c
   };
   if ( document.getElementById('semester').value !== 'all' ) {
     query['term'] = document.getElementById('semester').value
   }
-
   return query;
 }
 
-
-
-
-
-
 function formatResult( result ) {
-
     return result.subj +  "  -  "   + result.num + "." + result.sect + "   |   " + result.desc + "  |   (" + result.prof + ")   |   "  +  result.term
 }
-
 
 function randomColor() {
     var color = '#';
@@ -128,7 +122,6 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-
 
 function compileChart( result ) {
     var {term, subj, num, sect, desc, prof, grades} = result;
