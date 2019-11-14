@@ -1,22 +1,45 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html>
   <head>
-    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNT Grade Distributions</title>
-	<!-- CSS LINK to local file, styleSheet.css below -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<link rel ="stylesheet"
-	type ="text/css"
-	href ="styleSheet.css"
-	media ="screen" />
+    <style>
+      body {
+        font-family: 'Lato', Arial, sans-serif;
+      }
+      label {
+        font-family: 'Lato', Arial, sans-serif;
+      }
+      .banner {
+        font-family: 'Lato', Arial sans-serif;
+      }
+      .topbanner {
+        margin-bottom: 15px;
+      }
+      .bodybanner {
+        padding: 10px;
+      }
+      .untgreen {
+        background-color: #00853E;
+        color: #f5f5f5;
+      }
+      .results {
+        height: 400px;
+        overflow: auto;  
+      }
+      .midsection {
+        display: flex  
+      }
+    </style>
   </head>
   <body>
     <div class="banner topbanner untgreen">
       <div class="container-fluid">
         <div class="row">
-           <div class="col-xs-12">
+          <div class="col-xs-12">
             <h1 style="text-align: center;"><span style="font-size: 32px"><b>UNT Grade Distributions</b></span></h1>
           </div>
         </div>
@@ -31,7 +54,7 @@
               </div>
               <div class="col-md-8">
                 <div class="alert alert-info">
-                  <p><b>News</b> (6/4/2019): Spring 2019 grade distributions are now available! Thank you for your patience. We are now working on cleaning up Fall 2018 data. Updates will be sent to <a href="https://www.reddit.com/r/unt">r/UNT</a>.</p><p>&ndash;The UNT Grade Distributions Team</p>
+                  <p><b>News</b> (Updated 6/4/2019, 8:50pm CT): Spring 2019 grade distributions are now available! Thank you for your patience. We are now working on cleaning up Fall 2018 data. Updates will be sent to <a href="https://www.reddit.com/r/unt">r/UNT</a>.</p><p>&ndash;The UNT Grade Distributions Team</p>
                 </div>
               </div>
               <div class="col-md-2">
@@ -182,7 +205,7 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8">
-                <p style="text-align: center;">&copy; 2018&ndash;2019 the UNT Grade Distributions Team: <a href="https://garrettgu.com">Garrett Gu</a>, <a href="https://jeffw.xyz">Jeffrey Wang</a>, <a href="https://www.linkedin.com/in/josephwickline/">Joseph Wickline</a>, <a href = "http://prestja.com">Jacob Preston</a>, <a href="https://jakergrossman.xyz">Jake Grossman</a>, and <a href="mailto:JordanHamilton@my.unt.edu">Jordan Hamilton</a>.</p>
+                <p style="text-align: center;">&copy; 2018&ndash;2019 the UNT Grade Distributions Team: <a href="https://garrettgu.com">Garrett Gu</a>, <a href="https://jeffw.xyz">Jeffrey Wang</a>, <a href="https://www.linkedin.com/in/josephwickline/">Joseph Wickline</a>, <a href = "http://prestja.com">Jacob Preston</a>.</p>
                 <p style="text-align: center;">Some functionality borrowed from the UT Catalyst Grade Distributions tool. Not affiliated with or sponsored by the University of North Texas.</p>
                 <p style="text-align: center;"><b>UNT Grade Distributions</b> &middot; <a href="https://utdgrades.com">UT Dallas Grade Distributions</a></p>
               </div>

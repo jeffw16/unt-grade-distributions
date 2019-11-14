@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', function(){
     xhr.send();
 })
 
-
-
 function escapeRegex(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
@@ -34,6 +32,7 @@ function instantFind() {
     var num = document.getElementById('course').value;
     var desc = document.getElementById('desc').value;
     var professor = document.getElementById('instructor').value;
+
     var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
     // console.log(count);
 
@@ -41,8 +40,6 @@ function instantFind() {
         findClasses();
     }
 }
-
-
 
 function findClasses() {
     var select_result = document.getElementById('select_result');
@@ -52,10 +49,7 @@ function findClasses() {
         return;
     }
     window.db.find(generateQuery())
-        .sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
-	/*the placement of the query elements above affects the output.
-	example: term gets parsed first and has highest priority in a sense.
-	I then added prof second to alphabetize the output	*/
+        .sort({ subj: 1, num: 1, sect: 1 })
         .exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
@@ -77,28 +71,20 @@ function findClasses() {
 
 function generateQuery() {
   var query = {
+        // term: document.getElementById('semester').value,
         subj: generateContainsRegex(document.getElementById('subject').value),
-	num: generateContainsRegex(document.getElementById('course').value),
+        num: generateContainsRegex(document.getElementById('course').value),
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
-	prof: generateContainsRegex(document.getElementById('instructor').value),
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> formatting
-
-
+        prof: generateContainsRegex(document.getElementById('instructor').value),
   };
   if ( document.getElementById('semester').value !== 'all' ) {
-    query['term'] = document.getElementById('semester').value
+    query['term'] = document.getElementById('semester').value;
   }
   return query;
 }
 
 function formatResult( result ) {
-    return result.subj +  "  -  "   + result.num + "." + result.sect + "   |   " + result.desc + "  |   (" + result.prof + ")   |   "  +  result.term
+    return result.subj + " " + result.num + "." + result.sect + " " + result.desc + " (" + result.prof + ") - " + result.term;
 }
 
 function randomColor() {
@@ -134,7 +120,7 @@ function compileChart( result ) {
           text: subj + ' ' + num + '.' + sect + ' (' + prof + ')'
         },
         subtitle:{
-          text: desc + ' - ' +  term
+          text: desc + ' - ' + term
         },
         legend: {
           enabled: false
@@ -185,6 +171,3 @@ function compileChart( result ) {
     $('#sharelink').val(window.location.href + '?term=' + encodeURIComponent(term) + '&subj=' + encodeURIComponent(subj) + '&num=' + encodeURIComponent(num) + '&sect=' + encodeURIComponent(sect) + '&desc=' + encodeURIComponent(desc) + '&prof=' + encodeURIComponent(prof) + '&grades=' + encodeURIComponent(btoa(JSON.stringify(grades))));
     $('#share').show();
 }
-
-
-
