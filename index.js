@@ -82,6 +82,12 @@ function generateQuery() {
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
 	prof: generateContainsRegex(document.getElementById('instructor').value),
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> formatting
 
 
   };
