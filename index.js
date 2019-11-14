@@ -82,12 +82,12 @@ function generateQuery() {
 	num: generateContainsRegex(document.getElementById('course').value),
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
 	prof: generateContainsRegex(document.getElementById('instructor').value),
-<<<<<<< HEAD
-	
-=======
 
-//above 1 line of code is testing
->>>>>>> origin
+	
+
+
+
+
 
   };
   if ( document.getElementById('semester').value !== 'all' ) {
