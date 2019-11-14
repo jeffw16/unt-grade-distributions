@@ -81,16 +81,12 @@ function generateQuery() {
 	num: generateContainsRegex(document.getElementById('course').value),
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
 	prof: generateContainsRegex(document.getElementById('instructor').value),
-<<<<<<< HEAD
-
-	
 
 
 
 
 
-=======
->>>>>>> 28ecd4f9540e29f34770cf6b5f42da399463951c
+
   };
   if ( document.getElementById('semester').value !== 'all' ) {
     query['term'] = document.getElementById('semester').value
