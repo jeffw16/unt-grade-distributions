@@ -1,4 +1,4 @@
-      body {
+       body {
         font-family: 'Lato', Arial, sans-serif;
       }
       label {
@@ -24,3 +24,6 @@
       .midsection {
         display: flex  
       }
+      .col-md-5 {
+      margin-left: 220px;
+}​
