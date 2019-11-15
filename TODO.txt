@@ -3,5 +3,4 @@
 #       2. Using bootstrap 3, possible upgrade to boostrap 4?
 #       3. Make the "Downloading data" on the real page a dropdown menu
 #       4. "Share" and the Grading system key could be improved to look better IMO
-#       5. Align "Results" and "grading system key" to match donating to the cause. ALIGN the entire page as one, not seperately
-#	6. Nuke classes with all the same grades, unuseful to end user
+#	5. Nuke classes with all the same grades, unuseful to end user
