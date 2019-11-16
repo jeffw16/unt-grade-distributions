@@ -90,7 +90,7 @@ function generateQuery() {
 }
 
 function formatResult( result ) {
-    return result.subj + " " + result.num + "." + result.sect + "  |  " + result.desc + "  |  (" + result.prof + ")  |   " + result.term;
+    return result.subj + " " + result.num + "." + result.sect + " " + result.desc + "  (" + result.prof + ")  " + result.term;
 }
 
 function randomColor() {
