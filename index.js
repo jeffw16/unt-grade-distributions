@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
             // console.log('done initializing db');
             if(window.waiting){
                 findClasses();
-            }
+			}
         });
     };
     xhr.send();
@@ -32,7 +32,7 @@ function instantFind() {
     var num = document.getElementById('course').value;
     var desc = document.getElementById('desc').value;
     var professor = document.getElementById('instructor').value;
-
+	
     var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
     // console.log(count);
 
@@ -50,7 +50,7 @@ function findClasses() {
         return;
     }
     window.db.find(generateQuery())
-        .sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
+		.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
         .exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
