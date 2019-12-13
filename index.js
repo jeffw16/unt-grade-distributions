@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
             // console.log('done initializing db');
             if(window.waiting){
                 findClasses();
-            }
+			}
         });
     };
     xhr.send();
@@ -32,7 +32,7 @@ function instantFind() {
     var num = document.getElementById('course').value;
     var desc = document.getElementById('desc').value;
     var professor = document.getElementById('instructor').value;
-
+	
     var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
     // console.log(count);
 
@@ -40,6 +40,7 @@ function instantFind() {
         findClasses();
     }
 }
+
 
 function findClasses() {
     var select_result = document.getElementById('select_result');
@@ -49,7 +50,7 @@ function findClasses() {
         return;
     }
     window.db.find(generateQuery())
-        .sort({ subj: 1, num: 1, sect: 1 })
+		.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
         .exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
@@ -69,9 +70,14 @@ function findClasses() {
         });
 }
 
+				//.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 }) first statement
+				//.sort({ term: -1, prof: -1, sect: 5, subj: 3, num: 4 })  else statement without professor
+
+
+
+
 function generateQuery() {
   var query = {
-        // term: document.getElementById('semester').value,
         subj: generateContainsRegex(document.getElementById('subject').value),
         num: generateContainsRegex(document.getElementById('course').value),
         desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
@@ -84,7 +90,7 @@ function generateQuery() {
 }
 
 function formatResult( result ) {
-    return result.subj + " " + result.num + "." + result.sect + " " + result.desc + " (" + result.prof + ") - " + result.term;
+    return result.subj + " " + result.num + "." + result.sect + " " + result.desc + "  (" + result.prof + ")  " + result.term;
 }
 
 function randomColor() {
