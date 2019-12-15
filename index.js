@@ -1,3 +1,5 @@
+var delayTimer;
+
 document.addEventListener('DOMContentLoaded', function(){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://cdn.jsdelivr.net/gh/jeffw16/unt-grade-distributions@554c4c80bd3e9017b93d96e14dd434bba59e65a4/static/complete.json', true);
@@ -28,19 +30,18 @@ function generateContainsRegex(str){
 
 //search for classes if enough input is given
 function instantFind() {
-    var subject = document.getElementById('subject').value;
-    var num = document.getElementById('course').value;
-    var desc = document.getElementById('desc').value;
-    var professor = document.getElementById('instructor').value;
-	
-    var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
-    // console.log(count);
-
-    if(count >= 2) {
-        findClasses();
-    }
+    clearTimeout(delayTimer);
+	delayTimer = setTimeout(function() {
+		var subject = document.getElementById('subject').value;
+		var num = document.getElementById('course').value;
+		var desc = document.getElementById('desc').value;
+		var professor = document.getElementById('instructor').value;	
+		var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
+		if(count >= 2) {
+			findClasses();
+		}
+	}, 1000);
 }
-
 
 function findClasses() {
     var select_result = document.getElementById('select_result');
@@ -69,12 +70,6 @@ function findClasses() {
             }
         });
 }
-
-				//.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 }) first statement
-				//.sort({ term: -1, prof: -1, sect: 5, subj: 3, num: 4 })  else statement without professor
-
-
-
 
 function generateQuery() {
   var query = {
