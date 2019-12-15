@@ -50,9 +50,12 @@ function findClasses() {
         window.loading = true;
         return;
     }
-    window.db.find(generateQuery())
-		.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
-        .exec((err, docs) => {
+
+	        window.db.find(generateQuery())
+		//.sort({ term: -1, subj: 5, sect: 3, prof: 2, num: 4 });
+		//testing sorting with if conditions below -Jay
+		
+		.exec((err, docs) => {
             // console.log(docs);
             if(docs.length == 0){
                 select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
