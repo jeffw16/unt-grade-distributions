@@ -4,20 +4,17 @@
  * @author Jeffrey Wang (@jeffw16)
 */
 
-$json_filename = 'fall2018';
+$files = array("static/fall2017spring2018.json", "static/fall2018.json", "static/spring2019.json");
+$complete = "static/complete.json";
+$combo = array();
 
-$res_json = fopen( 'static/' . $json_filename . '.json', 'r' );
-$res_comp_read = fopen( 'static/complete.json', 'r' );
-#$res_comp_write = fopen( 'static/complete.json', 'w' );
+for ($i = 0; $i < count($files); $i++)
+{
+	$file = fopen($files[$i], 'r');
+	$current = json_decode(fread($file, filesize($files[$i])), true);
+	$combo = array_merge($combo, $current);
+}
 
-$arr = json_decode(fread($res_comp_read, filesize('static/complete.json')), true);
-echo json_last_error();
-$narr = json_decode(fread($res_json, filesize('static/' . $json_filename . '.json')), true);
-echo json_last_error();
-
-$combo = array_merge($arr, $narr);
-
-$res_comp_write = fopen( 'static/complete.json', 'w' );
-$writestr = json_encode( $combo );
-fwrite( $res_json, $writestr );
-echo json_last_error();
+$output = fopen($complete, 'w+');
+$string = json_encode($combo);
+fwrite($output ,$string);
