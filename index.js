@@ -4,15 +4,12 @@ document.addEventListener('DOMContentLoaded', function(){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://cdn.jsdelivr.net/gh/jeffw16/unt-grade-distributions@554c4c80bd3e9017b93d96e14dd434bba59e65a4/static/complete.json', true);
     xhr.responseType = 'json';
-    // console.log('started loading db');
     xhr.onload = function(e) {
         window.db = new Nedb();
-        // console.log('done loading db');
         window.db.insert(this.response, (err) =>{
             if(err) console.error(err);
-            // console.log('done initializing db');
             if(window.waiting){
-                findClasses();
+               findClasses();
 			}
         });
     };
@@ -20,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function(){
 })
 
 function escapeRegex(str) {
-    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
 //creates a new regexp that checks if a string is contained within the input.
 function generateContainsRegex(str){
-    return new RegExp(escapeRegex(str), 'i');
+   return new RegExp(escapeRegex(str), 'i');
 }
 
 //search for classes if enough input is given
@@ -44,34 +41,33 @@ function instantFind() {
 }
 
 function findClasses() {
-    var select_result = document.getElementById('select_result');
-    select_result.innerHTML = "loading...";
-    if(!window.db){
-        window.loading = true;
-        return;
-    }
-
-	        window.db.find(generateQuery())
-		//.sort({ term: -1, subj: 5, sect: 3, prof: 2, num: 4 });
-		//testing sorting with if conditions below -Jay
-		
-		.exec((err, docs) => {
-            // console.log(docs);
-            if(docs.length == 0){
-                select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
-            } else {
-                select_result.innerHTML = ""; // clears all section results
-                for ( var i = 0; i < docs.length; i++ ) {
-                    var item = document.createElement('li'); // list item
-                    let entry = docs[i]; // use "let" instead of "var" so variable scope is local
-                    item.appendChild(document.createTextNode(formatResult(entry)));
-                    item.style.color = "#2f843e";
-                    item.style.cursor = 'pointer';
-                    item.onclick = function(){ compileChart(entry); };
-                    document.getElementById('select_result').append(item);
-                }
-            }
-        });
+   var select_result = document.getElementById('select_result');
+   select_result.innerHTML = "loading...";
+	if(!window.db){
+      window.loading = true;
+      return;
+   }
+   window.db.find(generateQuery()).exec((err, docs) => 
+   {
+		if(docs.length == 0)
+      {
+			select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
+      } 
+      else 
+      {
+        select_result.innerHTML = ""; // clears all section results
+        for ( var i = 0; i < docs.length; i++ ) 
+        {
+          var item = document.createElement('li'); // list item
+          let entry = docs[i]; // use "let" instead of "var" so variable scope is local
+          item.appendChild(document.createTextNode(formatResult(entry)));
+          item.style.color = "#2f843e";
+          item.style.cursor = 'pointer';
+          item.onclick = function(){ compileChart(entry); };
+          document.getElementById('select_result').append(item);
+        }
+      }
+    });
 }
 
 function generateQuery() {
