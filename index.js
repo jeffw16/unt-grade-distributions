@@ -27,7 +27,7 @@ function generateContainsRegex(str){
 
 //search for classes if enough input is given
 function instantFind() {
-    clearTimeout(delayTimer);
+	clearTimeout(delayTimer);
 	delayTimer = setTimeout(function() {
 		var subject = document.getElementById('subject').value;
 		var num = document.getElementById('course').value;
@@ -36,8 +36,7 @@ function instantFind() {
 		var count = (!!subject) + (!!num) + 2*(!!desc) + 2*(!!professor);
 		if(count >= 1) {
 			findClasses();
-		}
-	}, 1000);
+		}}, 1000);
 }
 
 function findClasses() {
@@ -98,72 +97,71 @@ function getParameterByName(name, url) {
 	name = name.replace(/[\[\]]/g, '\\$&');
 	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
 	results = regex.exec(url);
-	
 	if (!results) return null;
 	if (!results[2]) return '';
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 function compileChart( result ) {
-    var {term, subj, num, sect, desc, prof, grades} = result;
-    var total = Object.values(grades).reduce((a, b) => a+parseInt(b), 0);
-    var colors = ['#30c737', '#93d10d', '#ffe14d', '#ffad33', '#ff704d', '#f518a9', '#a851a8', '#96d529'];
-    var myChart = Highcharts.chart('chart', {
-        chart: {
-          type: 'column'
-        },
-        title: {
-          text: subj + ' ' + num + '.' + sect + ' (' + prof + ')'
-        },
-        subtitle:{
-          text: desc + ' - ' + term
-        },
-        legend: {
-          enabled: false
-        },
-        xAxis: {
-          title: {
-            text: 'Grades'
-          },
-          categories: Object.keys(grades).map((grade) => grade || 'Ungraded')
-        },
-        yAxis: {
-          title: {
-            text: 'Students'
-          }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: `
-                <tr>
-                    <td style="color:{series.color};padding:0">{series.name}: </td>
-                    <td style="padding:0"><b>{point.y}</b></td>
-                </tr>
-                <tr>
-                    <td style="color:{series.color};padding:0">Percentage: </td>
-                    <td style="padding:0"><b>{point.percentage:.2f}%</b></td>
-                </tr>
-                `,
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        series: [{
-          name: 'Students',
-          data: Object.values(grades).map((num, i) => {
-                return {
-                    y: parseInt(num),
-                    color: colors[i] || randomColor(),
-                    percentage: num/total*100
-                };
-          })
-        }]
-    });
-    var totalgrades = 0;
-    Object.values(grades).forEach((num) => {
-      totalgrades += parseInt(num);
-    });
-    $('#stats').text('Total grades: ' + totalgrades);
-    $('#sharelink').val(window.location.href + '?term=' + encodeURIComponent(term) + '&subj=' + encodeURIComponent(subj) + '&num=' + encodeURIComponent(num) + '&sect=' + encodeURIComponent(sect) + '&desc=' + encodeURIComponent(desc) + '&prof=' + encodeURIComponent(prof) + '&grades=' + encodeURIComponent(btoa(JSON.stringify(grades))));
-    $('#share').show();
+	var {term, subj, num, sect, desc, prof, grades} = result;
+	var total = Object.values(grades).reduce((a, b) => a+parseInt(b), 0);
+	var colors = ['#30c737', '#93d10d', '#ffe14d', '#ffad33', '#ff704d', '#f518a9', '#a851a8', '#96d529'];
+	var myChart = Highcharts.chart('chart', {
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: subj + ' ' + num + '.' + sect + ' (' + prof + ')'
+		},
+		subtitle:{
+			text: desc + ' - ' + term
+		},
+		legend: {
+			enabled: false
+		},
+		xAxis: {
+			title: {
+				text: 'Grades'
+			},
+			categories: Object.keys(grades).map((grade) => grade || 'Ungraded')
+		},
+		yAxis: {
+			title: {
+				text: 'Students'
+			}
+		},
+		tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: `
+						<tr>
+								<td style="color:{series.color};padding:0">{series.name}: </td>
+								<td style="padding:0"><b>{point.y}</b></td>
+						</tr>
+						<tr>
+								<td style="color:{series.color};padding:0">Percentage: </td>
+								<td style="padding:0"><b>{point.percentage:.2f}%</b></td>
+						</tr>
+						`,
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+		},
+			series: [{
+				name: 'Students',
+				data: Object.values(grades).map((num, i) => {
+					return {
+						y: parseInt(num),
+						color: colors[i] || randomColor(),
+						percentage: num/total*100
+					};
+				})
+			}]
+	});
+	var totalgrades = 0;
+	Object.values(grades).forEach((num) => {
+		totalgrades += parseInt(num);
+	});
+	$('#stats').text('Total grades: ' + totalgrades);
+	$('#sharelink').val(window.location.href + '?term=' + encodeURIComponent(term) + '&subj=' + encodeURIComponent(subj) + '&num=' + encodeURIComponent(num) + '&sect=' + encodeURIComponent(sect) + '&desc=' + encodeURIComponent(desc) + '&prof=' + encodeURIComponent(prof) + '&grades=' + encodeURIComponent(btoa(JSON.stringify(grades))));
+	$('#share').show();
 }
