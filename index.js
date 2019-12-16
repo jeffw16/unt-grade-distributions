@@ -41,41 +41,36 @@ function instantFind() {
 }
 
 function findClasses() {
-   var select_result = document.getElementById('select_result');
-   select_result.innerHTML = "loading...";
+  var select_result = document.getElementById('select_result');
+  select_result.innerHTML = "loading...";
 	if(!window.db){
-      window.loading = true;
-      return;
-   }
-	window.db.find(generateQuery()).sort({ term: -1, prof: 2, sect: 5, subj: 0, num: 4 }).exec((err, docs) =>
-   {
-		if(docs.length == 0)
-      {
-			select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
-      } 
-      else 
-      {
-        select_result.innerHTML = ""; // clears all section results
-        for ( var i = 0; i < docs.length; i++ ) 
-        {
-          var item = document.createElement('li'); // list item
-          let entry = docs[i]; // use "let" instead of "var" so variable scope is local
-          item.appendChild(document.createTextNode(formatResult(entry)));
-          item.style.color = "#2f843e";
-          item.style.cursor = 'pointer';
-          item.onclick = function(){ compileChart(entry); };
-          document.getElementById('select_result').append(item);
-        }
+    window.loading = true;
+    return;
+  }
+	window.db.find(generateQuery()).sort({ term: -1, prof: 2, sect: 5, subj: 0, num: 4 }).exec((err, docs) => {
+		if(docs.length == 0) {
+		  select_result.innerHTML = "No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
+    } 
+    else {
+      select_result.innerHTML = ""; // clears all section results
+      for ( var i = 0; i < docs.length; i++ ) {
+        var item = document.createElement('li'); // list item
+        let entry = docs[i]; // use "let" instead of "var" so variable scope is local
+        item.appendChild(document.createTextNode(formatResult(entry)));
+        item.style.color = "#2f843e";
+        item.style.cursor = 'pointer';
+        item.onclick = function(){ compileChart(entry); };
+        document.getElementById('select_result').append(item);
       }
-    });
+    }});
 }
 
 function generateQuery() {
   var query = {
-        subj: generateContainsRegex(document.getElementById('subject').value),
-        num: generateContainsRegex(document.getElementById('course').value),
-        desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
-        prof: generateContainsRegex(document.getElementById('instructor').value),
+    subj: generateContainsRegex(document.getElementById('subject').value),
+    num: generateContainsRegex(document.getElementById('course').value),
+    desc: generateContainsRegex(document.getElementById('desc').value.toUpperCase()),
+    prof: generateContainsRegex(document.getElementById('instructor').value),
   };
   if ( document.getElementById('semester').value !== 'all' ) {
     query['term'] = document.getElementById('semester').value;
@@ -84,28 +79,29 @@ function generateQuery() {
 }
 
 function formatResult( result ) {
-    return result.subj + " " + result.num + "." + result.sect + " " + result.desc + "  (" + result.prof + ")  " + result.term;
+  return result.subj + " " + result.num + "." + result.sect + " " + result.desc + "  (" + result.prof + ")  " + result.term;
 }
 
 function randomColor() {
-    var color = '#';
-    var letters = '0123456789ABCDEF'.split('');
-    for(var i = 0; i < 3; i++){
-        color += letters[Math.floor(Math.random()*4+8)];
-        color += letters[Math.floor(Math.random()*16)];
-    }
-    return color;
+  var color = '#';
+  var letters = '0123456789ABCDEF'.split('');
+  for(var i = 0; i < 3; i++){
+    color += letters[Math.floor(Math.random()*4+8)];
+    color += letters[Math.floor(Math.random()*16)];
+  }
+  return color;
 }
 
 // from Stack Overflow https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/901144#901144
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+	results = regex.exec(url);
+	
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 function compileChart( result ) {
