@@ -47,7 +47,7 @@ function findClasses() {
       window.loading = true;
       return;
    }
-   window.db.find(generateQuery()).exec((err, docs) => 
+	window.db.find(generateQuery()).sort({ term: -1, prof: 2, sect: 5, subj: 0, num: 4 }).exec((err, docs) =>
    {
 		if(docs.length == 0)
       {
