@@ -6,6 +6,11 @@ body {
 	font-family: 'Lato', Arial, sans-serif;
 }
 
+.title {
+	display: inline-block;
+	font-family: 'Lato', Arial, sans-serif;
+	color: #00856E;
+}
 
 .button {
 	font-family: 'Lato', Arial, sans-serif;
