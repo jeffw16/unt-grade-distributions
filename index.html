@@ -53,11 +53,11 @@
 					<div class = "col-lg-4"></div>
 				</div>
 				<div class="row">
-					<div class = "col-xs-4"></div>
-					<div class = "col-xs-4" style="text-align: center">
+					<div class = "col-lg-4"></div>
+					<div class = "col-lg-4" style="text-align: center">
 						<button class="button" onclick="document.location='#results';return false;">Get Started</button>
 					</div>
-					<div class = "col-xs-4"></div>
+					<div class = "col-lg-4"></div>
 				</div>
 			</div>
 	</div>	
@@ -65,8 +65,8 @@
 	<div class = "container-fluid">
 		<a id = "results"></a>
 		<div class="row" style = "background-color: #3EB375">
-			<div class="col-md-2"></div>
-			<div class="col-md-3">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-3">
 				<h1 class = "title-white"><b>Search</b></h1>
 				<div class="form-group">
 					<label for="semester">Semester</label>
@@ -81,13 +81,13 @@
 				<form onsubmit="findClasses()" action="javascript:void(0)">
 					<div class="well well-sm">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="subject">Subject</label>
 									<input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" oninput="instantFind()"/>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="course">Course number</label>
 									<input type="text" class="form-control" name="course" id="course" placeholder="1710" oninput="instantFind()"/>
@@ -96,28 +96,31 @@
 						</div>
 					</div>
 					<div class="well well-sm">
-					<div class="form-group">
-						<label for="desc">Course title</label>
-						<input type="text" class="form-control" name="desc" id="desc" placeholder="CALCULUS I" oninput="instantFind()"/>
-					</div>
+						<div class="form-group">
+							<label for="desc">Course title</label>
+							<input type="text" class="form-control" name="desc" id="desc" placeholder="CALCULUS I" oninput="instantFind()"/>
+						</div>
 					</div>
 					<div class="well well-sm">
-					<div class="form-group">
-						<label for="instructor">Instructor</label>
-						<input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" oninput="instantFind()"/>
-					</div>
+						<div class="form-group">
+							<label for="instructor">Instructor</label>
+							<input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" oninput="instantFind()"/>
+						</div>
 					</div>
 					<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
 				</form>
-				<h1 class = "title-white"><b>Select</b></h1>
+				<h1 class = "title-white"><b>Sections</b></h1>
 				<div class ="results">
 					<ul id="select_result">Your search results will be displayed here.</ul>
 				</div>
 			</div>
 		</div>
-		<div class = "key" style="height:20%; background-color: #333F50">
-			
-		</div>
+		<row>
+			<div style = "background-color: #333F50">
+				<br>/<br>
+			</div>
+		</row>
+		
 	</div>
 	<div class = "extras">
 		<div class ="downloads">

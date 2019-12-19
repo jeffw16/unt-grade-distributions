@@ -39,34 +39,30 @@ body {
 }
 
 .landing {
-	height: 70%;
+	padding-bottom: 1%;
+	overflow: visible;
 }
 
 .results {
-	height: 80%; 
 	background-color: #3EB375;
 	overflow: auto;
 	font-family: 'Lato', Arial, sans-serif;
-
 }
 
 .extras {
 	height:100%;
 	font-family: 'Lato', Arial, sans-serif;
-
 }
 
 .downloads {
 	height:60%;
 	font-family: 'Lato', Arial, sans-serif;
-
 }
 
 .donations{
 	height:40%;
 	background-color: #3EB375;
 	font-family: 'Lato', Arial, sans-serif;
-
 }
 
 .footer {
@@ -75,5 +71,4 @@ body {
 	background-color: #333F50;
 	overflow: auto;
 	font-family: 'Lato', Arial, sans-serif;
-
 }
