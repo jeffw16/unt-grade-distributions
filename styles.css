@@ -33,7 +33,29 @@ body {
 	border: 2px solid #3EB375;
 }
 
+.landing {
+	height: 70%;
+}
+
 .results {
 	height: 80%; 
 	background-color: #3EB375;
+}
+
+.extras {
+	height:100%;
+}
+
+.downloads {
+	height:60%;
+}
+
+.donations{
+	height:40%;
+	background-color: #3EB375;
+}
+
+.footer {
+	height:10%;
+	background-color: #333F50
 }
