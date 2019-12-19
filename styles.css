@@ -10,8 +10,8 @@ body {
 .button {
 	font-family: 'Lato', Arial, sans-serif;
 	font-size: large;
-	background-color: #3EB375;
+	background-color: #00856E;
   	color: white;
-	border: 2px solid #3EB375;
+	border: 2px solid #00856E;
 	border-radius: 2px
 }
