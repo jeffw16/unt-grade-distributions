@@ -6,17 +6,34 @@ body {
 	font-family: 'Lato', Arial, sans-serif;
 }
 
-.title {
-	display: inline-block;
+.title_black {
 	font-family: 'Lato', Arial, sans-serif;
-	color: #00856E;
+	color:black
+}
+
+.title_accent {	
+	font-family: 'Lato', Arial, sans-serif;
+	color: #3EB375;
 }
 
 .button {
 	font-family: 'Lato', Arial, sans-serif;
 	font-size: large;
-	background-color: #00856E;
+	background-color: #3EB375;
   	color: white;
-	border: 2px solid #00856E;
+	border: 2px solid #3EB375;
 	border-radius: 2px
+}
+
+.button_inverted {
+	font-family: 'Lato', Arial, sans-serif;
+	font-size: large;
+	background-color: white;
+  	color: #3EB375;
+	border: 2px solid #3EB375;
+}
+
+.results {
+	height: 80%; 
+	background-color:#3EB375"
 }
