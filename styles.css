@@ -1,26 +1,7 @@
-      body {
-        font-family: 'Lato', Arial, sans-serif;
-      }
-      label {
-        font-family: 'Lato', Arial, sans-serif;
-      }
-      .banner {
-        font-family: 'Lato', Arial sans-serif;
-      }
-      .topbanner {
-        margin-bottom: 15px;
-      }
-      .bodybanner {
-        padding: 10px;
-      }
-      .untgreen {
-        background-color: #00853E;
-        color: #f5f5f5;
-      }
-      .results {
-        height: 400px;
-        overflow: auto;  
-      }
-      .midsection {
-        display: flex  
-      }
+html {
+	height: 100%
+}
+body {
+	height: 100%;
+	font-family: 'Lato', Arial, sans-serif;
+}
