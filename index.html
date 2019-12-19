@@ -24,8 +24,8 @@
 					<div class="col-xs-1"></div>				
 					<div class="col-xs-4">					
 						<img src="images/logo.png" style = "display:inline-block; height: 56px"></img>
-						<h1 class = "title_accent" style = "display: inline-block"><b>UNT</b></h1>
-						<h1 class = "title_black" style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
+						<h1 class = "title-accent" style = "display: inline-block"><b>UNT</b></h1>
+						<h1 class = "title-black" style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
 					</div>
 					<div class="col-xs-1"></div>				
 					<div class="col-xs-1"></div>				
@@ -34,7 +34,7 @@
 					<div class="col-xs-1"></div>
 					<div class="col-xs-1">
 						<span>
-							<button class="button_inverted">Support Us</button>
+							<button class="button-inverted" onclick="document.location='#donations';return false;" >Support Us</button>
 						</span>
 					</div>				
 					<div class="col-xs-1"></div>								
@@ -55,7 +55,7 @@
 				<div class="row">
 					<div class = "col-xs-4"></div>
 					<div class = "col-xs-4" style="text-align: center">
-						<button class="button">Get Started</button>
+						<button class="button" onclick="document.location='#results';return false;">Get Started</button>
 					</div>
 					<div class = "col-xs-4"></div>
 				</div>
@@ -64,6 +64,7 @@
 	
 	<div style = "height: 100%">
 		<div class = "results">
+		<a id = "results"></a>
 		</div>
 		<div class = "key" style="height:20%; background-color: #333F50">
 		</div>
@@ -71,10 +72,10 @@
 	
 	<div class = "extras">
 		<div class ="downloads">
-			
+			<h1 class = "title-black"><b>Downloads</b></h1>
 		</div>
 		<div class = "donations" >
-
+		<a id = "donations"></a>
 		</div>
 		<div class = "footer">
 
