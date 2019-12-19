@@ -45,23 +45,35 @@ body {
 .results {
 	height: 80%; 
 	background-color: #3EB375;
+	overflow: auto;
+	font-family: 'Lato', Arial, sans-serif;
+
 }
 
 .extras {
 	height:100%;
+	font-family: 'Lato', Arial, sans-serif;
+
 }
 
 .downloads {
 	height:60%;
+	font-family: 'Lato', Arial, sans-serif;
+
 }
 
 .donations{
 	height:40%;
 	background-color: #3EB375;
+	font-family: 'Lato', Arial, sans-serif;
+
 }
 
 .footer {
 	height:10%;
 	color:white;
-	background-color: #333F50
+	background-color: #333F50;
+	overflow: auto;
+	font-family: 'Lato', Arial, sans-serif;
+
 }

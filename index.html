@@ -62,14 +62,63 @@
 			</div>
 	</div>	
 	
-	<div style = "height: 100%">
-		<div class = "results">
+	<div class = "container-fluid">
 		<a id = "results"></a>
+		<div class="row" style = "background-color: #3EB375">
+			<div class="col-md-2"></div>
+			<div class="col-md-3">
+				<h1 class = "title-white"><b>Search</b></h1>
+				<div class="form-group">
+					<label for="semester">Semester</label>
+						<select name="semester" id="semester" onfocus="this.selectedIndex = -1;" onchange="instantFind();">
+						<option value="all">All semesters</option>
+						<option value="2017 Fall">2017 Fall - 1178</option>
+						<option value="2018 Spring">2018 Spring - 1181</option>
+						<option value="2018 Fall">2018 Fall - 1188</option>
+						<option value="2019 Spring">2019 Spring - 1191</option>
+					</select>
+				</div>
+				<form onsubmit="findClasses()" action="javascript:void(0)">
+					<div class="well well-sm">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="subject">Subject</label>
+									<input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" oninput="instantFind()"/>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="course">Course number</label>
+									<input type="text" class="form-control" name="course" id="course" placeholder="1710" oninput="instantFind()"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="well well-sm">
+					<div class="form-group">
+						<label for="desc">Course title</label>
+						<input type="text" class="form-control" name="desc" id="desc" placeholder="CALCULUS I" oninput="instantFind()"/>
+					</div>
+					</div>
+					<div class="well well-sm">
+					<div class="form-group">
+						<label for="instructor">Instructor</label>
+						<input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" oninput="instantFind()"/>
+					</div>
+					</div>
+					<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+				</form>
+				<h1 class = "title-white"><b>Select</b></h1>
+				<div class ="results">
+					<ul id="select_result">Your search results will be displayed here.</ul>
+				</div>
+			</div>
 		</div>
 		<div class = "key" style="height:20%; background-color: #333F50">
+			
 		</div>
-	</div>	
-	
+	</div>
 	<div class = "extras">
 		<div class ="downloads">
 			<h1 class = "title-black"><b>Downloads</b></h1>
