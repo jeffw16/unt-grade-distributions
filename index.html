@@ -21,22 +21,19 @@
 	<div class="landing">
 		<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-1"></div>				
+					<div class="col-lg-1">
+						<img src="images/logo.png" style = "display:inline-block; width: 100%"></img>
+					</div>				
 					<div class="col-lg-4">					
-						<img src="images/logo.png" style = "display:inline-block; height: 56px"></img>
-						<h1 class = "title-accent" style = "display: inline-block"><b>UNT</b></h1>
-						<h1 class = "title-black" style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
+						<h2 style = "display: inline-block"><b>UNT</b></h1>
+						<h2 style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
 					</div>
 					<div class="col-lg-1"></div>				
 					<div class="col-lg-1"></div>				
 					<div class="col-lg-1"></div>				
 					<div class="col-lg-1"></div>				
 					<div class="col-lg-1"></div>
-					<div class="col-lg-1">
-						<span>
-							<button class="button-inverted" onclick="document.location='#donations';return false;" >Support Us</button>
-						</span>
-					</div>				
+					<div class="col-lg-1"></div>				
 					<div class="col-lg-1"></div>								
 				</div>
 				<div class= "row">
@@ -56,6 +53,7 @@
 					<div class = "col-lg-4"></div>
 					<div class = "col-lg-4" style="text-align: center">
 						<button class="button" onclick="document.location='#results';return false;">Get Started</button>
+						<button class="button" onclick="document.location='#donations';return false;" >Support Us</button>
 					</div>
 					<div class = "col-lg-4"></div>
 				</div>
@@ -69,7 +67,7 @@
 			<div class="col-lg-3">
 				<h1 class = "title-white"><b>Search</b></h1>
 				<div class="form-group">
-					<label for="semester">Semester</label>
+					<label for="semester" style="color:white">Semester</label>
 						<select name="semester" id="semester" onfocus="this.selectedIndex = -1;" onchange="instantFind();">
 						<option value="all">All semesters</option>
 						<option value="2017 Fall">2017 Fall - 1178</option>
@@ -124,26 +122,30 @@
 					<div class="form-group">
 						<input type="text" class="form-control" name="sharelink" id="sharelink" onClick="this.setSelectionRange(0, this.value.length)">
 					</div>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#key" aria-expanded="false" aria-controls="key">
+							Toggle grading key
+					</button>
+					<div class = "row" id = "key">
+							<div class = "card card-body">
+								<ul>
+									<li><b>A</b> - Excellent</li>
+									<li><b>B</b> - Good</li>
+									<li><b>C</b> - Fair</li>
+									<li><b>D</b> - Passing</li>
+									<li><b>F</b> - Failure</li>
+									<li><b>P</b> - Passed</li>
+									<li><b>NP</b> - Not passed</li>
+									<li><b>W</b> - Withdrawal without penalty</li>
+									<li><b>WF</b> - Withdrawal and failure</li>
+									<li><b>I</b> - Incomplete</li>
+									<li><b>PR</b> - Thesis progress</li>
+									<li><b>NPR</b> - No thesis progress</li>
+									<li><b>Z</b> - Placeholder for improperly received/recorded grades</li>
+									</ul>
+							</div>
+						</div>
 				</div>
 			</div>
-		</div>
-		<div class = "row" style = "background: #333F50; color: white">
-			<h1 class = "title-white" style = "text-align: center"><b>Grading Key<b></h1>
-			<ul>
-				<li><b>A</b> - Excellent</li>
-				<li><b>B</b> - Good</li>
-				<li><b>C</b> - Fair</li>
-				<li><b>D</b> - Passing</li>
-				<li><b>F</b> - Failure</li>
-				<li><b>P</b> - Passed</li>
-				<li><b>NP</b> - Not passed</li>
-				<li><b>W</b> - Withdrawal without penalty</li>
-				<li><b>WF</b> - Withdrawal and failure</li>
-				<li><b>I</b> - Incomplete</li>
-				<li><b>PR</b> - Thesis progress</li>
-				<li><b>NPR</b> - No thesis progress</li>
-				<li><b>Z</b> - Placeholder for improperly received/recorded grades</li>
-			</ul>
 		</div>
 		
 	</div>
@@ -169,6 +171,9 @@
 	<script src="index.js"></script>
 	<script>
 	$(function() {
+		$('#key').collapse({ // set the grading key to pre-expanded upon page load
+  		toggle: true
+		});
 		if ( grades !== null ) {
 			var term = getParameterByName('term');
 			var subj = getParameterByName('subj');
