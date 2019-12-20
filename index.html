@@ -18,7 +18,12 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
     <meta content="utf-8" http-equiv="encoding" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+      integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+      crossorigin="anonymous"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Lato"
       rel="stylesheet"
@@ -29,14 +34,27 @@
     <div class="landing">
       <div class="container-fluid">
         <div class="row">
-          <div class="d-flex flex-row justify-content-start">
-            <div class="">
+          <!-- <div class="d-flex flex-row justify-content-center align-items-center" style="border: 1px solid red;">
+            <div class="d-flex" style="border: 1px solid blue;">
                 <img src="images/logo.png" style = "display:inline-block; height: 32px; width: 32px;"></img>
             </div>
-            <div class=" ">
+            <div class="d-flex" style="border: 1px solid limegreen;">
               <h1><span class="header-accent">UNT</span> &nbspGrade Distributions</h1>
             </div>
+          </div> -->
+          <div class="d-flex flex-column bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight">Flex item</div>
+            <div class="p-2 bd-highlight">Flex item</div>
+            <div class="p-2 bd-highlight">Third flex item</div>
           </div>
+          <!-- <div style="display: flex; flex-direction: row; justify-content: flex-start; border: 1px solid red; min-height: 40px;" ></div>
+            <div style="display: flex; flex-shrink: 1; border: 1px solid blue;">
+              <p>I am content</p>
+            </div>
+            <div style="display: flex; border: 1px solid blue;">
+                <p>I am content</p>
+            </div>
+          </div> -->
           <!-- <div class="d-flex-inline bd-highlight">
 						<img src="images/logo.png" style = "display:inline-block; height: 32px; width: 32px;"></img>
             <h2 class = "header-accent" style = "display: inline-block"><b>UNT</b></h1>
@@ -258,10 +276,13 @@
       <div class="downloads">
         <h2 class="header-black"><b>Downloads</b></h2>
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="..." alt="Card image cap">
+          <img class="card-img-top" src="..." alt="Card image cap" />
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
@@ -294,8 +315,8 @@
     <!-- Additional JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
     <script src="nedb.min.js"></script>
