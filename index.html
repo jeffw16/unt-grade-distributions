@@ -1,195 +1,324 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<title>UNT Grade Distributions</title>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152614845-1"></script>
-	<script>
-  		window.dataLayer = window.dataLayer || [];
-  		function gtag(){dataLayer.push(arguments);}
-  		gtag('js', new Date());
-  		gtag('config', 'UA-152614845-1');
-	</script>
+    <title>UNT Grade Distributions</title>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-152614845-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-152614845-1");
+    </script>
 
-	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-	<meta content="utf-8" http-equiv="encoding">	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<link href="styles.css" rel="stylesheet" type="text/css">
-</head>
-<body>	
-	<div class="landing">
-		<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-1">
-						<img src="images/logo.png" style = "display:inline-block; width: 100%"></img>
-					</div>				
-					<div class="col-lg-4">					
-						<h2 style = "display: inline-block"><b>UNT</b></h1>
-						<h2 style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
-					</div>
-					<div class="col-lg-1"></div>				
-					<div class="col-lg-1"></div>				
-					<div class="col-lg-1"></div>				
-					<div class="col-lg-1"></div>				
-					<div class="col-lg-1"></div>
-					<div class="col-lg-1"></div>				
-					<div class="col-lg-1"></div>								
-				</div>
-				<div class= "row">
-					<div class = "col-lg-4"></div>
-					<div class = "col-lg-4">
-						<h1 class = "header-accent" style = "text-align: center; border-bottom: 3px solid #3EB375"><b>Free, as they should be</b></h1>
-					</div>
-					<div class = "col-lg-4"></div>
-				</div>
-				<div class ="row">
-					<div class = "col-lg-4"></div>
-					<div class = "col-lg-4" style="text-align: left">
-						<b>
-							<p>Unlimited access to grade distributions in all classes for the Fall 2017, Spring 2018, Fall 2018, and Spring 2019 semesters. Transparency for your academic success.</p>
-							<p>Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.</p>
-						</b>
-					</div>
-					<div class = "col-lg-4"></div>
-				</div>
-				<div class="row">
-					<div class = "col-lg-4"></div>
-					<div class = "col-lg-4" style="text-align: center">
-						<button class="button" onclick="document.location='#results';return false;">Get Started</button>
-						<button class="button" onclick="document.location='#donations';return false;" >Support Us</button>
-					</div>
-					<div class = "col-lg-4"></div>
-				</div>
-			</div>
-	</div>	
-	
-	<div class = "container-fluid">
-		<a id = "results"></a>
-		<div class="row" style = "background-color: #3EB375">
-			<div class="col-lg-2"></div>
-			<div class="col-lg-3">
-				<h2 class = "header-white"><b>Search</b></h2>
-				<div class="form-group">
-					<label for="semester" style="color:white">Semester</label>
-						<select name="semester" id="semester" onfocus="this.selectedIndex = -1;" onchange="instantFind();">
-						<option value="all">All semesters</option>
-						<option value="2017 Fall">2017 Fall - 1178</option>
-						<option value="2018 Spring">2018 Spring - 1181</option>
-						<option value="2018 Fall">2018 Fall - 1188</option>
-						<option value="2019 Spring">2019 Spring - 1191</option>
-					</select>
-				</div>
-				<form onsubmit="findClasses()" action="javascript:void(0)">
-					<div class="well well-sm">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label for="subject">Subject</label>
-									<input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" oninput="instantFind()"/>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label for="course">Course number</label>
-									<input type="text" class="form-control" name="course" id="course" placeholder="1710" oninput="instantFind()"/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="well well-sm">
-						<div class="form-group">
-							<label for="desc">Course title</label>
-							<input type="text" class="form-control" name="desc" id="desc" placeholder="CALCULUS I" oninput="instantFind()"/>
-						</div>
-					</div>
-					<div class="well well-sm">
-						<div class="form-group">
-							<label for="instructor">Instructor</label>
-							<input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" oninput="instantFind()"/>
-						</div>
-					</div>
-					<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
-				</form>
-				<h1 class = "header-white"><b>Sections</b></h1>
-				<div class ="results">
-					<ul id="select_result" style = "color: white">Your search results will be displayed here.</ul>
-				</div>		
-			</div>
-			<div class="col-md-5">
-				<h2 class = "header-white"><b>Results</b></h2>
-				<b><p id="stats" style = "color: white"></p></b>
-				<div id="chart" style="width:100%; height:400px; color:white">Your graph will be displayed here.</div>
-				<div id="share" style="display: none; color:white">
-					<h1 class = "header-white">Share</h1>
-					<p><b>Click on the field below and copy the URL to share this specific class with your friends.</b></p>
-					<div class="form-group">
-						<input type="text" class="form-control" name="sharelink" id="sharelink" onClick="this.setSelectionRange(0, this.value.length)">
-					</div>
-					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#key" aria-expanded="false" aria-controls="key">
-							Toggle grading key
-					</button>
-					<div class = "row" id = "key">
-							<div class = "card card-body">
-								<ul>
-									<li><b>A</b> - Excellent</li>
-									<li><b>B</b> - Good</li>
-									<li><b>C</b> - Fair</li>
-									<li><b>D</b> - Passing</li>
-									<li><b>F</b> - Failure</li>
-									<li><b>P</b> - Passed</li>
-									<li><b>NP</b> - Not passed</li>
-									<li><b>W</b> - Withdrawal without penalty</li>
-									<li><b>WF</b> - Withdrawal and failure</li>
-									<li><b>I</b> - Incomplete</li>
-									<li><b>PR</b> - Thesis progress</li>
-									<li><b>NPR</b> - No thesis progress</li>
-									<li><b>Z</b> - Placeholder for improperly received/recorded grades</li>
-									</ul>
-							</div>
-						</div>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	<div class = "extras">
-		<div class ="downloads">
-			<h2 class = "header-black"><b>Downloads</b></h2>
-		</div>
-		<div class = "donations" >
-		<a id = "donations"></a>
-		</div>
-		<div class = "footer">
-			<p style="text-align: center;">&copy; 2018&ndash;2019 the UNT Grade Distributions Team: <a href="https://garrettgu.com">Garrett Gu</a>, <a href="https://jeffw.xyz">Jeffrey Wang</a>, <a href="https://www.linkedin.com/in/josephwickline/">Joseph Wickline</a>, <a href = "http://prestja.com">Jacob Preston</a> and <a href = "mailto:JordanHamilton@my.unt.edu">Jordan Hamilton</a>.</p>
-			<p style="text-align: center;">Some functionality borrowed from the UT Catalyst Grade Distributions tool. Not affiliated with or sponsored by the University of North Texas.</p>
-			<p style="text-align: center;"><b>UNT Grade Distributions</b> &middot; <a href="https://utdgrades.com">UT Dallas Grade Distributions</a></p>
-		</div>
-	</div>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="landing">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="d-flex flex-row justify-content-start">
+            <div class="">
+                <img src="images/logo.png" style = "display:inline-block; height: 32px; width: 32px;"></img>
+            </div>
+            <div class=" ">
+              <h1><span class="header-accent">UNT</span> &nbspGrade Distributions</h1>
+            </div>
+          </div>
+          <!-- <div class="d-flex-inline bd-highlight">
+						<img src="images/logo.png" style = "display:inline-block; height: 32px; width: 32px;"></img>
+            <h2 class = "header-accent" style = "display: inline-block"><b>UNT</b></h1>
+            <h2 class = "header-black" style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
+          </div>				 -->
+          <div class="col-lg-1"></div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+            <h1
+              class="header-accent"
+              style="text-align: center; border-bottom: 3px solid lightgray"
+            >
+              <b>Free, as they should be</b>
+            </h1>
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4" style="text-align: left">
+            <b>
+              <p>
+                Unlimited access to grade distributions in all classes for the
+                Fall 2017, Spring 2018, Fall 2018, and Spring 2019 semesters.
+                Transparency for your academic success.
+              </p>
+              <p>
+                Grade distributions are historical data on how many letter
+                grades of each kind were handed out in classes. Picking classes
+                with favorable grade distributions helps you increase your
+                chance of academic success and timely graduation.
+              </p>
+            </b>
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4" style="text-align: center">
+            <button
+              class="button"
+              onclick="document.location='#results';return false;"
+            >
+              Get Started
+            </button>
+            <button
+              class="button"
+              onclick="document.location='#donations';return false;"
+            >
+              Support Us
+            </button>
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+      </div>
+    </div>
 
-	<!-- Additional JavaScript -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="nedb.min.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="index.js"></script>
-	<script>
-	$(function() {
-		$('#key').collapse({ // set the grading key to pre-expanded upon page load
-  		toggle: true
-		});
-		if ( grades !== null ) {
-			var term = getParameterByName('term');
-			var subj = getParameterByName('subj');
-			var num = getParameterByName('num');
-			var sect = getParameterByName('sect');
-			var desc = getParameterByName('desc');
-			var prof = getParameterByName('prof');
-			var grades = JSON.parse(atob(getParameterByName('grades')));
-			var result = {term, subj, num, sect, desc, prof, grades};
-			compileChart( result );
-		}
-	});
-	</script>
-</body>
+    <div class="container-fluid">
+      <a id="results"></a>
+      <div class="row" style="background-color: #3EB375">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-3">
+          <h2 class="header-white"><b>Search</b></h2>
+          <div class="form-group">
+            <label for="semester" style="color:white">Semester</label>
+            <select
+              name="semester"
+              id="semester"
+              onfocus="this.selectedIndex = -1;"
+              onchange="instantFind();"
+            >
+              <option value="all">All semesters</option>
+              <option value="2017 Fall">2017 Fall - 1178</option>
+              <option value="2018 Spring">2018 Spring - 1181</option>
+              <option value="2018 Fall">2018 Fall - 1188</option>
+              <option value="2019 Spring">2019 Spring - 1191</option>
+            </select>
+          </div>
+          <form onsubmit="findClasses()" action="javascript:void(0)">
+            <div class="well well-sm">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="subject"
+                      id="subject"
+                      placeholder="MATH"
+                      oninput="instantFind()"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="course">Course number</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="course"
+                      id="course"
+                      placeholder="1710"
+                      oninput="instantFind()"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="well well-sm">
+              <div class="form-group">
+                <label for="desc">Course title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="desc"
+                  id="desc"
+                  placeholder="CALCULUS I"
+                  oninput="instantFind()"
+                />
+              </div>
+            </div>
+            <div class="well well-sm">
+              <div class="form-group">
+                <label for="instructor">Instructor</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="instructor"
+                  id="instructor"
+                  placeholder="Smith"
+                  oninput="instantFind()"
+                />
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              <span
+                class="glyphicon glyphicon-search"
+                aria-hidden="true"
+              ></span>
+              Search
+            </button>
+          </form>
+          <h1 class="header-white"><b>Sections</b></h1>
+          <div class="results">
+            <ul id="select_result" style="color: white">
+              Your search results will be displayed here.
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <h2 class="header-white"><b>Results</b></h2>
+          <b><p id="stats" style="color: white"></p></b>
+          <div id="chart" style="width:100%; height:400px; color:white">
+            Your graph will be displayed here.
+          </div>
+          <div id="share" style="display: none; color:white">
+            <h1 class="header-white">Share</h1>
+            <p>
+              <b
+                >Click on the field below and copy the URL to share this
+                specific class with your friends.</b
+              >
+            </p>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="sharelink"
+                id="sharelink"
+                onClick="this.setSelectionRange(0, this.value.length)"
+              />
+            </div>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-toggle="collapse"
+              data-target="#key"
+              aria-expanded="false"
+              aria-controls="key"
+            >
+              Toggle grading key
+            </button>
+            <div class="row" id="key">
+              <div class="card card-body">
+                <ul>
+                  <li><b>A</b> - Excellent</li>
+                  <li><b>B</b> - Good</li>
+                  <li><b>C</b> - Fair</li>
+                  <li><b>D</b> - Passing</li>
+                  <li><b>F</b> - Failure</li>
+                  <li><b>P</b> - Passed</li>
+                  <li><b>NP</b> - Not passed</li>
+                  <li><b>W</b> - Withdrawal without penalty</li>
+                  <li><b>WF</b> - Withdrawal and failure</li>
+                  <li><b>I</b> - Incomplete</li>
+                  <li><b>PR</b> - Thesis progress</li>
+                  <li><b>NPR</b> - No thesis progress</li>
+                  <li>
+                    <b>Z</b> - Placeholder for improperly received/recorded
+                    grades
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extras">
+      <div class="downloads">
+        <h2 class="header-black"><b>Downloads</b></h2>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="donations">
+        <a id="donations"></a>
+      </div>
+      <div class="footer">
+        <p style="text-align: center;">
+          &copy; 2018&ndash;2019 the UNT Grade Distributions Team:
+          <a href="https://garrettgu.com">Garrett Gu</a>,
+          <a href="https://jeffw.xyz">Jeffrey Wang</a>,
+          <a href="https://www.linkedin.com/in/josephwickline/"
+            >Joseph Wickline</a
+          >, <a href="http://prestja.com">Jacob Preston</a> and
+          <a href="mailto:JordanHamilton@my.unt.edu">Jordan Hamilton</a>.
+        </p>
+        <p style="text-align: center;">
+          Some functionality borrowed from the UT Catalyst Grade Distributions
+          tool. Not affiliated with or sponsored by the University of North
+          Texas.
+        </p>
+        <p style="text-align: center;">
+          <b>UNT Grade Distributions</b> &middot;
+          <a href="https://utdgrades.com">UT Dallas Grade Distributions</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Additional JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="nedb.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="index.js"></script>
+    <script>
+      $(function() {
+        $("#key").collapse({
+          // set the grading key to pre-expanded upon page load
+          toggle: true
+        });
+        if (grades !== null) {
+          var term = getParameterByName("term");
+          var subj = getParameterByName("subj");
+          var num = getParameterByName("num");
+          var sect = getParameterByName("sect");
+          var desc = getParameterByName("desc");
+          var prof = getParameterByName("prof");
+          var grades = JSON.parse(atob(getParameterByName("grades")));
+          var result = { term, subj, num, sect, desc, prof, grades };
+          compileChart(result);
+        }
+      });
+    </script>
+  </body>
 </html>
