@@ -6,17 +6,17 @@ body {
 	font-family: 'Lato', Arial, sans-serif;
 }
 
-.title-black {
+.header-black {
 	font-family: 'Lato', Arial, sans-serif;
 	color:black;
 }
 
-.title-white {
+.header-white {
 	font-family: 'Lato', Arial, sans-serif;
 	color:white;
 }
 
-.title-accent {	
+.header-accent {	
 	font-family: 'Lato', Arial, sans-serif;
 	color: #3EB375;
 }
