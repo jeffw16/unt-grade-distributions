@@ -61,7 +61,7 @@ function findClasses() {
                     var item = document.createElement('li'); // list item
                     let entry = docs[i]; // use "let" instead of "var" so variable scope is local
                     item.appendChild(document.createTextNode(formatResult(entry)));
-                    item.style.color = "#2f843e";
+                    item.style.color = "#ffffff";
                     item.style.cursor = 'pointer';
                     item.onclick = function(){ compileChart(entry); };
                     document.getElementById('select_result').append(item);
