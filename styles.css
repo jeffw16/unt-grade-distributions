@@ -45,6 +45,7 @@ body {
 
 .results {
 	background-color: #3EB375;
+	height: 40%;
 	overflow: auto;
 	font-family: 'Lato', Arial, sans-serif;
 }
@@ -66,7 +67,6 @@ body {
 }
 
 .footer {
-	height:10%;
 	color:white;
 	background-color: #333F50;
 	overflow: auto;

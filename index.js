@@ -115,7 +115,7 @@ function getParameterByName(name, url) {
 }
 
 function compileChart( result ) {
-    var {term, subj, num, sect, desc, prof, grades} = result;
+  var {term, subj, num, sect, desc, prof, grades} = result;
     var total = Object.values(grades).reduce((a, b) => a+parseInt(b), 0);
     var colors = ['#30c737', '#93d10d', '#ffe14d', '#ffad33', '#ff704d', '#f518a9', '#a851a8', '#96d529'];
     var myChart = Highcharts.chart('chart', {
