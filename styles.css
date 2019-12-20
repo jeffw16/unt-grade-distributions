@@ -1,66 +1,69 @@
 html {
-	height: 100%
-}
-body {
 	height: 100%;
-	font-family: 'Lato', Arial, sans-serif;
-}
-
-.header-black {
-	font-family: 'Lato', Arial, sans-serif;
-	color:black;
-}
-
-.header-white {
-	font-family: 'Lato', Arial, sans-serif;
-	color:white;
-}
-
-.header-accent {	
-	font-family: 'Lato', Arial, sans-serif;
-	color: #3EB375;
-}
-
-.button {
-	font-family: 'Lato', Arial, sans-serif;
+  }
+  body {
+	height: 100%;
+	font-family: "Lato", Arial, sans-serif;
+  }
+  
+  .header-black {
+	font-family: "Lato", Arial, sans-serif;
+	color: black;
+  }
+  
+  .header-white {
+	font-family: "Lato", Arial, sans-serif;
+	color: white;
+  }
+  
+  .header-accent {
+	font-family: "Lato", Arial, sans-serif;
+	color: #3eb375;
+  }
+  
+  .button {
+	font-family: "Lato", Arial, sans-serif;
 	font-size: large;
-	background-color: #3EB375;
-  	color: white;
-	border: 2px solid #3EB375;
-	border-radius: 5px
-}
-
-.landing {
+	background-color: #3eb375;
+	color: white;
+	border: 2px solid #3eb375;
+	border-radius: 5px;
+  }
+  
+  .landing {
 	padding-bottom: 1%;
 	overflow: visible;
-}
-
-.results {
-	background-color: #3EB375;
-	height: 400px;
+  }
+  
+  .results {
+	background-color: #3eb375;
 	overflow: auto;
-	font-family: 'Lato', Arial, sans-serif;
-}
-
-.extras {
-	height:100%;
-	font-family: 'Lato', Arial, sans-serif;
-}
-
-.downloads {
-	height:60%;
-	font-family: 'Lato', Arial, sans-serif;
-}
-
-.donations{
-	height:40%;
-	background-color: #3EB375;
-	font-family: 'Lato', Arial, sans-serif;
-}
-
-.footer {
-	color:white;
-	background-color: #333F50;
+	height: 200px;
+	font-family: "Lato", Arial, sans-serif;
+  }
+  
+  .extras {
+	height: 100%;
+	font-family: "Lato", Arial, sans-serif;
+  }
+  
+  .downloads {
+	height: 60%;
+	font-family: "Lato", Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+  }
+  
+  .donations {
+	height: 40%;
+	background-color: #3eb375;
+	font-family: "Lato", Arial, sans-serif;
+  }
+  
+  .footer {
+	color: white;
+	background-color: #333f50;
 	overflow: auto;
-	font-family: 'Lato', Arial, sans-serif;
-}
+	font-family: "Lato", Arial, sans-serif;
+  }
+  
