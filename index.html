@@ -28,75 +28,48 @@
       href="https://fonts.googleapis.com/css?family=Lato"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <!-- // New Banner Containers -->
-    <!-- <div id="#splash" class="container-fluid" style="border: 1px solid red;">
-        <div class="container" style="max-width: 960px; border: 1px solid blue;">
-          992px
-        </div>
-    </div> -->
 
 
-    <div class="landing">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- <div class="d-flex flex-row justify-content-center align-items-center" style="border: 1px solid red;">
-            <div class="d-flex" style="border: 1px solid blue;">
-                <img src="images/logo.png" style = "display:inline-block; height: 32px; width: 32px;"></img>
-            </div>
-            <div class="d-flex" style="border: 1px solid limegreen;">
-              <h1><span class="header-accent">UNT</span> &nbspGrade Distributions</h1>
-            </div>
-          </div> -->
-          <div class="d-flex flex-row align-items-center bd-highlight" style="display: flex !important;">
-            <div class="" style="display: flex; justify-content: center; align-items: center;">
-                <img src="images/logo.png" style = "display: flex !important; height: 48px; width: 48px; margin: 16px; "></img>
-            </div>
-            <div class="" style="display: flex; justify-content: center; align-items: center;">
-              <h1>
-                <span class="header-accent">UNT</span>&nbspGrade Distributions
+    <!-- // Landing -->
+    <div
+      id="#landing"
+      aria-label="backdrop"
+      class="container-fluid"
+      style="height: 100vh;"
+    >
+      <div
+        aria-label="frame"
+        class="container"
+        style="display: flex; flex-direction: column; padding: 0px; height: 100%;"
+      >
+          <!-- // Title -->
+          <div style="display: flex;">
+            <div class="d-flex flex-row align-items-center bd-highlight" style="display: flex !important; padding: 48px 0px 16px 0px;">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="images/logo.png" style = "display: flex !important; height: 48px; width: 48px; margin: 8px; "></img>
+                </div>
+                <div class="" style="display: flex; justify-content: center; align-items: center;">
+                  <h1 style="font-weight: bold;">
+                    <span class="header-accent">UNT</span>&nbspGrade Distributions
+                  </h1>
+                </div>
+              </div>
+          </div>
+          <div
+            class=""
+            style="display: flex; align-items: center; justify-content: center; flex: 1;"
+          >
+            <div class="col-lg-6 col-md-12" style="display: flex; flex-direction: column;">
+              <h1
+                class="header-accent"
+                style="text-align: center; margin-bottom: 16px; padding-bottom: 32px; border-bottom: 1.5px solid lightgray"
+              >
+                Free, as they should be
               </h1>
-            </div>
-          </div>
-          <!-- <div style="display: flex; flex-direction: row; justify-content: flex-start; border: 1px solid red; min-height: 40px;" ></div>
-            <div style="display: flex; flex-shrink: 1; border: 1px solid blue;">
-              <p>I am content</p>
-            </div>
-            <div style="display: flex; border: 1px solid blue;">
-                <p>I am content</p>
-            </div>
-          </div> -->
-          <!-- <div class="d-flex-inline bd-highlight">
-						<img src="images/logo.png" style = "display:inline-block; height: 32px; width: 32px;"></img>
-            <h2 class = "header-accent" style = "display: inline-block"><b>UNT</b></h1>
-            <h2 class = "header-black" style = "display: inline-block"><b>&nbspGrade Distributions</b></h1>
-          </div>				 -->
-          <div class="col-lg-1"></div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-1"></div>
-          <div class="col-lg-1"></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4">
-            <h1
-              class="header-accent"
-              style="text-align: center; border-bottom: 3px solid lightgray"
-            >
-              <b>Free, as they should be</b>
-            </h1>
-          </div>
-          <div class="col-lg-4"></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4" style="text-align: left">
-            <b>
               <p>
                 Unlimited access to grade distributions in all classes for the
                 Fall 2017, Spring 2018, Fall 2018, and Spring 2019 semesters.
@@ -108,26 +81,27 @@
                 with favorable grade distributions helps you increase your
                 chance of academic success and timely graduation.
               </p>
-            </b>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <button
+                  class="button"
+                  style="margin-right: 16px;"
+                  onclick="document.location='#results';return false;"
+                >
+                  Get Started
+                </button>
+                <button
+                  class="button"
+                  style="background: white; color: #3eb375;"
+                  onclick="document.location='#donations';return false;"
+                >
+                  Support Us
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-4"></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4" style="text-align: center">
-            <button
-              class="button"
-              onclick="document.location='#results';return false;"
-            >Get Started</button>
-            <button
-              class="button"
-              onclick="document.location='#donations';return false;"
-            >Support Us</button>
-          </div>
-          <div class="col-lg-4"></div>
-        </div>
       </div>
     </div>
+
 
     <div class="container-fluid">
       <a id="results"></a>
@@ -140,7 +114,7 @@
             <select
               name="semester"
               id="semester"
-              onfocus="this.selectedIndex = -1;"
+              onfocus="this.selectedIndex = 0;"
               onchange="instantFind();"
             >
               <option value="all">All semesters</option>
@@ -155,7 +129,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="subject">Subject</label>
+                    <label for="subject" style="color:white;">Subject</label>
                     <input
                       type="text"
                       class="form-control"
@@ -168,7 +142,9 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="course">Course number</label>
+                    <label for="course" style="color:white;"
+                      >Course number</label
+                    >
                     <input
                       type="text"
                       class="form-control"
@@ -183,7 +159,7 @@
             </div>
             <div class="well well-sm">
               <div class="form-group">
-                <label for="desc">Course title</label>
+                <label for="desc" style="color:white;">Course title</label>
                 <input
                   type="text"
                   class="form-control"
@@ -196,7 +172,7 @@
             </div>
             <div class="well well-sm">
               <div class="form-group">
-                <label for="instructor">Instructor</label>
+                <label for="instructor" style="color:white;">Instructor</label>
                 <input
                   type="text"
                   class="form-control"
@@ -215,13 +191,12 @@
               Search
             </button>
           </form>
-          <h2 class="header-white"><b>Sections</b></h2>
+          <h3 class="header-white"><b>Sections</b></h3>
           <div class="results">
-           
-            <ul id="select_result" style="color: white">
-              Your search results will be displayed here.
-            </ul>
-        
+            <p style="color:white;">
+              Any classes found matching the search criteria will be listed here
+            </p>
+            <ul id="select_result" style="color: white"></ul>
           </div>
         </div>
         <div class="col-md-5">
@@ -284,34 +259,11 @@
       </div>
     </div>
     <div class="extras">
+      <div class = "container-fluid">
+        
+      </div>
       <div class="downloads">
-        <div class="card text-center" style="width: 18rem">
-          <div class="card-body">
-            <h5 class="card-title">Spring 2019</h5>
-            <p class="card-text">Grade distributions for Spring 2019 are available in three formats</p>
-            <a href="#" class="btn btn-primary">JSON</a>
-            <a href="#" class="btn btn-primary">CSV</a>
-            <a href="#" class="btn btn-primary">XSLX</a>
-          </div>
-        </div>
-        <div class="card text-center" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Fall 2018</h5>
-            <p class="card-text">Grade distributions for Spring 2019 are available in three formats</p>
-            <a href="#" class="btn btn-primary">JSON</a>
-            <a href="#" class="btn btn-primary">CSV</a>
-            <a href="#" class="btn btn-primary">XSLX</a>
-          </div>
-        </div>
-        <div class="card text-center" style="width: 18rem">
-          <div class="card-body">
-            <h5 class="card-title">Spring 2018</h5>
-            <p class="card-text">Grade distributions for Spring 2019 are available in three formats</p>
-            <a href="#" class="btn btn-primary">JSON</a>
-            <a href="#" class="btn btn-primary">CSV</a>
-            <a href="#" class="btn btn-primary">XSLX</a>
-          </div>
-        </div>
+        
       </div>
       <div class="donations">
         <a id="donations"></a>

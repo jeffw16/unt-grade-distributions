@@ -3,7 +3,7 @@ html {
   }
   body {
 	height: 100%;
-	font-family: "Lato", Arial, sans-serif;
+	font-family: "Poppins", sans-serif;
   }
   
   .header-black {
@@ -22,12 +22,18 @@ html {
   }
   
   .button {
+	margin-top: 64px;
+	padding: 4px 16px;
 	font-family: "Lato", Arial, sans-serif;
-	font-size: large;
+	font-size: 20px;
 	background-color: #3eb375;
 	color: white;
 	border: 2px solid #3eb375;
 	border-radius: 5px;
+  }
+  .button:hover {
+	transform: scale(1.05);
+	transition: transform 0.35s ease-in-out;
   }
   
   .landing {
@@ -38,7 +44,7 @@ html {
   .results {
 	background-color: #3eb375;
 	overflow: auto;
-	height: 200px;
+	height: 10rem;
 	font-family: "Lato", Arial, sans-serif;
   }
   
