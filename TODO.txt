@@ -2,7 +2,6 @@
 #       1. Escaped characters at the bottom of index.html
 #       2. Using bootstrap 3, possible upgrade to boostrap 4?
 #       3. Make the "Downloading data" on the real page a dropdown menu
-#       4. "Share" and the Grading system key could be improved to look better IMO
+#       4. "Share" and the Grading system key could be improved to look better IMO visually speaking(alignment)
 #	5. Find a way to re-generate fall2017spring2018.json using the improved parse.php without compromising 'term' field		
-#	6. Fix favicon 404. How tf did this break anyway? Dont group me into that comit please
-#	7. consider caching on the site for returning users.
+#	6. Consider caching on the site for returning users.
