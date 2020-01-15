@@ -72,4 +72,14 @@ html {
 	overflow: auto;
 	font-family: "Lato", Arial, sans-serif;
   }
-  
+
+  .collapsible {
+	background-color: #777;
+  	color: white;
+  	cursor: pointer;
+  	padding: 18px;
+  	border: none;
+  	text-align: left;
+  	outline: none;
+		font-size: 15px;
+}

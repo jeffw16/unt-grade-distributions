@@ -222,19 +222,10 @@
                 onClick="this.setSelectionRange(0, this.value.length)"
               />
             </div>
-            <button
-              class="btn btn-primary"
-              type="button"
-              data-toggle="collapse"
-              data-target="#key"
-              aria-expanded="false"
-              aria-controls="key"
-            >
-              Toggle grading key
-            </button>
-            <div class="row" id="key">
+            <button class="collapsible"> Toggle grading key </button>
+            <div class="content" id="key" style="display: none">
               <div class="card card-body">
-                <ul>
+                <ul style="color: black">
                   <li><b>A</b> - Excellent</li>
                   <li><b>B</b> - Good</li>
                   <li><b>C</b> - Fair</li>
@@ -247,10 +238,7 @@
                   <li><b>I</b> - Incomplete</li>
                   <li><b>PR</b> - Thesis progress</li>
                   <li><b>NPR</b> - No thesis progress</li>
-                  <li>
-                    <b>Z</b> - Placeholder for improperly received/recorded
-                    grades
-                  </li>
+                  <li><b>Z</b> - Placeholder for improperly received/recorded grades </li>
                 </ul>
               </div>
             </div>
@@ -301,11 +289,25 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="index.js"></script>
     <script>
-      $(function() {
-        $("#key").collapse({
-          // set the grading key to pre-expanded upon page load
-          toggle: true
-        });
+    // from w3
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          console.log("hide");
+        } else {
+          console.log("show");
+          content.style.display = "block";
+        }
+      });
+    }
+      
+      $(function() {        
         if (grades !== null) {
           var term = getParameterByName("term");
           var subj = getParameterByName("subj");

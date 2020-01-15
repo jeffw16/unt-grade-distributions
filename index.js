@@ -72,9 +72,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	  });
   }
   
-  //.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 }) first statement
-  //.sort({ term: -1, prof: -1, sect: 5, subj: 3, num: 4 })  else statement without professor
-  
   function generateQuery() {
 	var query = {
 	  subj: generateContainsRegex(document.getElementById("subject").value),
