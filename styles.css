@@ -44,12 +44,11 @@ body {
 }
   
 .results {
-	color:black;
 	background-color: white;
 	overflow: auto;
 	max-height: 35rem;
 	font-family: "Lato", Arial, sans-serif;
-	border: 2px solid #3eb375;
+	border: 1px solid #CCCCCC;
 	border-radius: 5px;
 }
   
