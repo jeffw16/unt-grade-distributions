@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   function findClasses() {
 	var select_result = document.getElementById("select_result");
-	select_result.innerHTML = "loading...";
+	select_result.innerHTML = "Finding classes...";
 	if (!window.db) {
 	  window.loading = true;
 	  return;
