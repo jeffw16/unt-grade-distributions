@@ -1,27 +1,28 @@
 html {
 	height: 100%;
 }
-  body {
+
+body {
 	height: 100%;
 	font-family: "Poppins", sans-serif;
-  }
+}
   
-  .header-black {
+.header-black {
 	font-family: "Lato", Arial, sans-serif;
 	color: black;
-  }
+}
   
-  .header-white {
+.header-white {
 	font-family: "Lato", Arial, sans-serif;
 	color: white;
-  }
+}
   
-  .header-accent {
+.header-accent {
 	font-family: "Lato", Arial, sans-serif;
 	color: #3eb375;
-  }
+}
   
-  .button {
+.button {
 	margin-top: 64px;
 	padding: 4px 16px;
 	font-family: "Lato", Arial, sans-serif;
@@ -30,51 +31,54 @@ html {
 	color: white;
 	border: 2px solid #3eb375;
 	border-radius: 5px;
-	}
+}
 
-  .button:hover {
+.button:hover {
 	transform: scale(1.05);
 	transition: transform 0.35s ease-in-out;
-  }
+}
   
-  .landing {
+.landing {
 	padding-bottom: 1%;
 	overflow: visible;
-  }
+}
   
-  .results {
-	background-color: #3eb375;
+.results {
+	color:black;
+	background-color: white;
 	overflow: auto;
 	height: 10rem;
 	font-family: "Lato", Arial, sans-serif;
-  }
+	border: 2px solid #3eb375;
+	border-radius: 5px;
+}
   
-  .extras {
+.extras {
 	height: 100%;
 	font-family: "Lato", Arial, sans-serif;
-  }
+}
   
-  .downloads {
+.downloads {
 	height: 60%;
 	font-family: "Lato", Arial, sans-serif;
 	display: flex;
 	justify-content: center;
-  }
+}
   
-  .donations {
+.donations {
 	height: 40%;
 	background-color: #3eb375;
 	font-family: "Lato", Arial, sans-serif;
-  }
+}
   
-  .footer {
+.footer {
 	color: white;
 	background-color: #333f50;
 	overflow: auto;
 	font-family: "Lato", Arial, sans-serif;
-  }
+}
 
-  .collapsible {
+.collapsible {
 	font-family: "Lato", Arial, sans-serif;
 	font-size: 20px;
 	background-color: #3eb375;

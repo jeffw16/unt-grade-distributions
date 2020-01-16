@@ -61,8 +61,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			var item = document.createElement("li"); // list item
 			let entry = docs[i]; // use "let" instead of "var" so variable scope is local
 			item.appendChild(document.createTextNode(formatResult(entry)));
-			item.style.color = "#ffffff";
+			item.style.color = "#000000";
 			item.style.cursor = "pointer";
+			item.style.fontFamily = "Lato";
 			item.onclick = function() {
 			  compileChart(entry);
 			};
