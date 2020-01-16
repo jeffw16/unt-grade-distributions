@@ -64,37 +64,37 @@ function instantFind() {
 	}, 1000); 
 }
   
-  function findClasses() {
+function findClasses() {
 	var select_result = document.getElementById("select_result");
 	select_result.innerHTML = "Finding classes...";
 	if (!window.db) {
-	  window.loading = true;
-	  return;
+		window.loading = true;
+		return;
 	}
 	window.db
-	  .find(generateQuery())
-	  .sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
-	  .exec((err, docs) => {
+		.find(generateQuery())
+		.sort({ term: -1, prof: 2, sect: 5, subj: 3, num: 4 })
+		.exec((err, docs) => {
 		if (docs.length == 0) {
-		  select_result.innerHTML =
+			select_result.innerHTML =
 			"No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
 		} else {
-		  select_result.innerHTML = ""; // clears all section results
-		  for (var i = 0; i < docs.length; i++) {
-			var item = document.createElement("li"); // list item
-			let entry = docs[i]; // use "let" instead of "var" so variable scope is local
-			item.appendChild(document.createTextNode(formatResult(entry)));
-			item.style.color = "#000000";
-			item.style.cursor = "pointer";
-			item.style.fontFamily = "Lato";
-			item.onclick = function() {
-			  compileChart(entry);
-			};
-			document.getElementById("select_result").append(item);
-		  }
+			select_result.innerHTML = ""; // clears all section results
+			for (var i = 0; i < docs.length; i++) {
+				var item = document.createElement("li"); // list item
+				let entry = docs[i]; // use "let" instead of "var" so variable scope is local
+				item.appendChild(document.createTextNode(formatResult(entry)));
+				item.style.color = "#000000";
+				item.style.cursor = "pointer";
+				item.style.fontFamily = "Lato";
+				item.onclick = function() {
+					compileChart(entry);
+				};
+				document.getElementById("select_result").append(item);
+			}
 		}
-	  });
-  }
+	});
+}
   
 function generateQuery() {
 	var query = {
