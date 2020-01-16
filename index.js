@@ -1,3 +1,5 @@
+var delayTimer;
+
 document.addEventListener("DOMContentLoaded", function() {
 	var xhr = new XMLHttpRequest();
 	xhr.open(
@@ -16,30 +18,31 @@ document.addEventListener("DOMContentLoaded", function() {
 	  });
 	};
 	xhr.send();
-  });
+});
   
-  function escapeRegex(str) {
+function escapeRegex(str) {
 	return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-  }
+}
   
-  //creates a new regexp that checks if a string is contained within the input.
-  function generateContainsRegex(str) {
+//creates a new regexp that checks if a string is contained within the input.
+function generateContainsRegex(str) {
 	return new RegExp(escapeRegex(str), "i");
-  }
+}
   
-  //search for classes if enough input is given
-  function instantFind() {
-	var subject = document.getElementById("subject").value;
-	var num = document.getElementById("course").value;
-	var desc = document.getElementById("desc").value;
-	var professor = document.getElementById("instructor").value;
-  
-	var count = !!subject + !!num + 2 * !!desc + 2 * !!professor;
-  
-	if (count >= 2) {
-	  findClasses();
-	}
-  }
+//search for classes if enough input is given
+function instantFind() {
+	clearTimeout(delayTimer);
+	delayTImer = setTimeout(function() {
+		var subject = document.getElementById("subject").value;
+		var num = document.getElementById("course").value;
+		var desc = document.getElementById("desc").value;
+		var professor = document.getElementById("instructor").value;
+		var count = !!subject + !!num + 2 * !!desc + 2 * !!professor;
+		if (count >= 2) {
+			findClasses();
+		}
+	}, 1000); 
+}
   
   function findClasses() {
 	var select_result = document.getElementById("select_result");
@@ -73,131 +76,129 @@ document.addEventListener("DOMContentLoaded", function() {
 	  });
   }
   
-  function generateQuery() {
+function generateQuery() {
 	var query = {
-	  subj: generateContainsRegex(document.getElementById("subject").value),
-	  num: generateContainsRegex(document.getElementById("course").value),
-	  desc: generateContainsRegex(
+		subj: generateContainsRegex(document.getElementById("subject").value),
+		num: generateContainsRegex(document.getElementById("course").value),
+		desc: generateContainsRegex(
 		document.getElementById("desc").value.toUpperCase()
-	  ),
-	  prof: generateContainsRegex(document.getElementById("instructor").value)
+		),
+		prof: generateContainsRegex(document.getElementById("instructor").value)
 	};
 	if (document.getElementById("semester").value !== "all") {
-	  query["term"] = document.getElementById("semester").value;
+		query["term"] = document.getElementById("semester").value;
 	}
 	return query;
-  }
-  
-  function formatResult(result) {
+}
+
+function formatResult(result) {
 	return (
-	  result.subj +
-	  " " +
-	  result.num +
-	  "." +
-	  result.sect +
-	  " " +
-	  result.desc +
-	  "  (" +
-	  result.prof +
-	  ")  " +
-	  result.term
+		result.subj +
+		" " +
+		result.num +
+		"." +
+		result.sect +
+		" " +
+		result.desc +
+		"  (" +
+		result.prof +
+		")  " +
+		result.term
 	);
-  }
+}
   
-  function randomColor() {
+function randomColor() {
 	var color = "#";
 	var letters = "0123456789ABCDEF".split("");
 	for (var i = 0; i < 3; i++) {
-	  color += letters[Math.floor(Math.random() * 4 + 8)];
-	  color += letters[Math.floor(Math.random() * 16)];
+		color += letters[Math.floor(Math.random() * 4 + 8)];
+		color += letters[Math.floor(Math.random() * 16)];
 	}
 	return color;
-  }
+}
   
-  // from Stack Overflow https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/901144#901144
-  function getParameterByName(name, url) {
+// from Stack Overflow https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/901144#901144
+function getParameterByName(name, url) {
 	if (!url) url = window.location.href;
 	name = name.replace(/[\[\]]/g, "\\$&");
 	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	  results = regex.exec(url);
+		results = regex.exec(url);
 	if (!results) return null;
 	if (!results[2]) return "";
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
+}
   
-  function compileChart(result) {
+function compileChart(result) {
 	var { term, subj, num, sect, desc, prof, grades } = result;
 	var total = Object.values(grades).reduce((a, b) => a + parseInt(b), 0);
 	var colors = [
-	  "#30c737",
-	  "#93d10d",
-	  "#ffe14d",
-	  "#ffad33",
-	  "#ff704d",
-	  "#f518a9",
-	  "#a851a8",
-	  "#96d529"
+		"#30c737",
+		"#93d10d",
+		"#ffe14d",
+		"#ffad33",
+		"#ff704d",
+		"#f518a9",
+		"#a851a8",
+		"#96d529"
 	];
 	var myChart = Highcharts.chart("chart", {
-	  chart: {
-		type: "column"
-	  },
-	  title: {
-		text: subj + " " + num + "." + sect + " (" + prof + ")"
-	  },
-	  subtitle: {
-		text: desc + " - " + term
-	  },
-	  legend: {
-		enabled: false
-	  },
-	  xAxis: {
-		title: {
-		  text: "Grades"
+		chart: {
+			type: "column"
 		},
-		categories: Object.keys(grades).map(grade => grade || "Ungraded")
-	  },
-	  yAxis: {
 		title: {
-		  text: "Students"
-		}
-	  },
-	  tooltip: {
-		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-		pointFormat: `
-				<tr>
-					<td style="color:{series.color};padding:0">{series.name}: </td>
-					<td style="padding:0"><b>{point.y}</b></td>
-				</tr>
-				<tr>
-					<td style="color:{series.color};padding:0">Percentage: </td>
-					<td style="padding:0"><b>{point.percentage:.2f}%</b></td>
-				</tr>
-				`,
-		footerFormat: "</table>",
-		shared: true,
-		useHTML: true
-	  },
-	  series: [
-		{
-		  name: "Students",
-		  data: Object.values(grades).map((num, i) => {
-			return {
-			  y: parseInt(num),
-			  color: colors[i] || randomColor(),
-			  percentage: (num / total) * 100
-			};
-		  })
-		}
-	  ]
+			text: subj + " " + num + "." + sect + " (" + prof + ")"
+		},
+		subtitle: {
+			text: desc + " - " + term
+		},
+		legend: {
+			enabled: false
+		},
+		xAxis: {
+			title: {
+				text: "Grades"
+			},
+			categories: Object.keys(grades).map(grade => grade || "Ungraded")
+		},
+		yAxis: {
+			title: {
+				text: "Students"
+			}
+		},
+		tooltip: {
+			headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			pointFormat: `
+					<tr>
+						<td style="color:{series.color};padding:0">{series.name}: </td>
+						<td style="padding:0"><b>{point.y}</b></td>
+					</tr>
+					<tr>
+						<td style="color:{series.color};padding:0">Percentage: </td>
+						<td style="padding:0"><b>{point.percentage:.2f}%</b></td>
+					</tr>
+					`,
+			footerFormat: "</table>",
+			shared: true,
+			useHTML: true
+		},
+		series: [{
+			name: "Students",
+			data: Object.values(grades).map((num, i) => {
+				return {
+					y: parseInt(num),
+					color: colors[i] || randomColor(),
+					percentage: (num / total) * 100
+				};
+			})
+		}]
 	});
 	var totalgrades = 0;
 	Object.values(grades).forEach(num => {
-	  totalgrades += parseInt(num);
+		totalgrades += parseInt(num);
 	});
 	$("#stats").text("Total grades: " + totalgrades);
 	$("#sharelink").val(
-	  window.location.href +
+		window.location.href +
 		"?term=" +
 		encodeURIComponent(term) +
 		"&subj=" +
@@ -214,5 +215,4 @@ document.addEventListener("DOMContentLoaded", function() {
 		encodeURIComponent(btoa(JSON.stringify(grades)))
 	);
 	$("#share").show();
-  }
-  
+}
