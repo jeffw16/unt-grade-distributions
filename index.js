@@ -89,6 +89,8 @@ function findClasses() {
 				item.style.fontFamily = "Lato";
 				item.onclick = function() {
 					compileChart(entry);
+					location.hash = "dummyHash";
+					location.hash = "#" + "graphs";
 				};
 				document.getElementById("select_result").append(item);
 			}
