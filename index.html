@@ -32,8 +32,6 @@
     <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-
-
     <!-- // Landing -->
     <div
       id="#landing"
@@ -105,10 +103,10 @@
 
     <div class="container-fluid">
       <a id="results"></a>
-      <div class="row" style="background-color: #3EB375">
+      <div class="row" style="background-color: #3EB375">        
         <div class="col-lg-2"></div>
         <div class="col-lg-3">
-          <h2 class="header-white"><b>Search</b></h2>
+          <h2 class="header-accent" style="color:white">Search</h2>
           <div class="form-group">
             <label for="semester" style="color:white">Semester</label>
             <select
@@ -191,7 +189,7 @@
               Search
             </button>
           </form>
-          <h3 class="header-white"><b>Sections</b></h3>
+          <h2 class="header-accent" style="color:white">Sections</h3>
           <div class="results">
             <p style="color:white;">
               Any classes found matching the search criteria will be listed here
@@ -200,18 +198,15 @@
           </div>
         </div>
         <div class="col-md-5">
-          <h2 class="header-white"><b>Results</b></h2>
-          <b><p id="stats" style="color: white"></p></b>
+          <h2 class="header-accent" style="color:white">Results</h2>
+          <p id="stats" style="color: white"></p>
           <div id="chart" style="width:100%; height:400px; color:white">
             Your graph will be displayed here.
           </div>
           <div id="share" style="display: none; color:white">
-            <h1 class="header-white">Share</h1>
+            <h2 class="header-accent" style="color:white">Share</h2>
             <p>
-              <b
-                >Click on the field below and copy the URL to share this
-                specific class with your friends.</b
-              >
+              Click on the field below and copy the URL to share this specific class with your friends.
             </p>
             <div class="form-group">
               <input
@@ -222,7 +217,7 @@
                 onClick="this.setSelectionRange(0, this.value.length)"
               />
             </div>
-            <button class="collapsible"> Toggle grading key </button>
+            <button class="collapsible" style="background: white; color: #3eb375;">Toggle grading key</button>
             <div class="content" id="key" style="display: none">
               <div class="card card-body">
                 <ul style="color: black">
@@ -247,12 +242,8 @@
       </div>
     </div>
     <div class="extras">
-      <div class = "container-fluid">
-        
-      </div>
-      <div class="downloads">
-        
-      </div>
+      <div class = "container-fluid"></div>
+      <div class="downloads"></div>
       <div class="donations">
         <a id="donations"></a>
       </div>
@@ -299,9 +290,7 @@
         var content = this.nextElementSibling;
         if (content.style.display === "block") {
           content.style.display = "none";
-          console.log("hide");
         } else {
-          console.log("show");
           content.style.display = "block";
         }
       });

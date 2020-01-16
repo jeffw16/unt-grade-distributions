@@ -1,6 +1,6 @@
 html {
 	height: 100%;
-  }
+}
   body {
 	height: 100%;
 	font-family: "Poppins", sans-serif;
@@ -30,7 +30,8 @@ html {
 	color: white;
 	border: 2px solid #3eb375;
 	border-radius: 5px;
-  }
+	}
+
   .button:hover {
 	transform: scale(1.05);
 	transition: transform 0.35s ease-in-out;
@@ -74,12 +75,11 @@ html {
   }
 
   .collapsible {
-	background-color: #777;
-  	color: white;
-  	cursor: pointer;
-  	padding: 18px;
-  	border: none;
-  	text-align: left;
-  	outline: none;
-		font-size: 15px;
+	font-family: "Lato", Arial, sans-serif;
+	font-size: 20px;
+	background-color: #3eb375;
+	color: white;
+	border: 2px solid #3eb375;
+	border-radius: 5px;
+	width: 100%;
 }
