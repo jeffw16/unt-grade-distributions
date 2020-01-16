@@ -87,3 +87,8 @@ body {
 	border-radius: 5px;
 	width: 100%;
 }
+
+.btn btn-secondary dropdown-toggle {
+	text-align: center;
+	border: 3px solid green;
+  }
