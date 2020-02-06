@@ -39,7 +39,7 @@ function instantFind() {
 		var desc = document.getElementById("desc").value;
 		var professor = document.getElementById("instructor").value;
 		var count = !!subject + !!num + 2 * !!desc + 2 * !!professor;
-		if (count >= 2) {
+		if (count > 0) {
 			findClasses();
 		}
 	}, 1000); 
