@@ -41,7 +41,7 @@ function instantFind() {
 		var count = !!subject + !!num + 2 * !!desc + 2 * !!professor;
 
         /* if any parameters have been filled out *, perform search */
-		if (count > 0) {
+		if (count >= 2) {
 			findClasses();
 		} else {
             /* otherwise, reset select_result element text */
