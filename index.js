@@ -44,10 +44,10 @@ function instantFind() {
 		if (count >= 2) {
 			findClasses();
 		} else {
-            /* otherwise, reset select_result element text */
-            let select_result = document.getElementById("select_result");
-            select_result.innerHTML = '<p style="color: #CCCCCC">Any classes found matching the search criteria will be listed here.</p>';
-        }
+            		/* otherwise, reset select_result element text */
+            		let select_result = document.getElementById("select_result");
+            		select_result.innerHTML = '<p style="color: #CCCCCC">Any classes found matching the search criteria will be listed here.</p>';
+        	}
 	}, 1000); 
 }
   
