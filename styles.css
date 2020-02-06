@@ -50,7 +50,7 @@ body {
 .results {
 	background-color: white;
 	overflow: auto;
-	height: 50rem;
+	max-height: 40rem;
 	font-family: "Lato", Arial, sans-serif;
 	border: 1px solid #CCCCCC;
 	border-radius: 5px;
@@ -59,13 +59,6 @@ body {
 .extras {
 	height: 50%;
 	font-family: "Lato", Arial, sans-serif;
-}
-  
-.downloads {
-	height: 60%;
-	font-family: "Lato", Arial, sans-serif;
-	display: flex;
-	justify-content: center;
 }
   
 .donations {
