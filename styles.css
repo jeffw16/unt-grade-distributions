@@ -51,7 +51,7 @@ body {
 .results {
 	background-color: white;
 	overflow: auto;
-	max-height: 40rem;
+	max-height: 100vh;
 	font-family: "Lato", Arial, sans-serif;
 	border: 1px solid #CCCCCC;
 	border-radius: 5px;
