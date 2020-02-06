@@ -29,7 +29,7 @@
 
 <body>
 	<!-- // Landing section -->
-	<div id="#landing" aria-label="backdrop" class="container-fluid" style="height:100vh">
+	<div id="landing" aria-label="backdrop" class="container-fluid" style="height:100vh">
 		<div aria-label="frame" class="container"
 			style="display: flex; flex-direction: column; padding: 0px; height: 100%;">
 			<!-- // Title -->
@@ -66,7 +66,7 @@
 					</p>
 					<div style="display: flex; align-items: center; justify-content: center;">
 						<button class="button" style="margin-right: 16px;"
-							onclick="document.location='#results';return false;">Get Started</button>
+							 onclick="document.getElementById('results').scrollIntoView({behavior: 'smooth', block: 'start'})">Get Started</button>
 						<button class="button" style="background: white; color: #3eb375;"
 							onclick="document.location='#donations';return false;">Support Us</button>
 					</div>
@@ -75,7 +75,7 @@
 		</div>
 	</div>
 	<!-- Search section -->
-	<div class="container-fluid" style="background-color: #3EB375;">
+	<div id="search" style="background-color: #3EB375;" class="container-fluid">
 		<a id="results"></a>
 		<div class="row">
 			<div class="col-lg-2"></div>

@@ -38,9 +38,13 @@ body {
 	transition: transform 0.35s ease-in-out;
 }
   
-.landing {
+#landing {
 	padding-bottom: 1%;
 	overflow: visible;
+}
+
+#search {
+	padding-top: 1.1%;
 }
   
 .results {
