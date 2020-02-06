@@ -39,14 +39,20 @@ function instantFind() {
 		var desc = document.getElementById("desc").value;
 		var professor = document.getElementById("instructor").value;
 		var count = !!subject + !!num + 2 * !!desc + 2 * !!professor;
-		if (count >= 2) {
+
+        /* if any parameters have been filled out *, perform search */
+		if (count > 0) {
 			findClasses();
-		}
+		} else {
+            /* otherwise, reset select_result element text */
+            let select_result = document.getElementById("select_result");
+            select_result.innerHTML = '<p style="color: #CCCCCC">Any classes found matching the search criteria will be listed here.</p>';
+        }
 	}, 1000); 
 }
   
 function findClasses() {
-	var select_result = document.getElementById("select_result");
+	let select_result = document.getElementById("select_result");
 	select_result.innerHTML = "Finding classes...";
 	if (!window.db) {
 		window.loading = true;
