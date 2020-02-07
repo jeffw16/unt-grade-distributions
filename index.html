@@ -29,50 +29,30 @@
 
 <body>
 	<!-- // Landing section -->
-	<div id="landing" aria-label="backdrop" class="container-fluid">
-		<div aria-label="frame" class="container"
-			style="display: flex; flex-direction: column; padding: 0px; height: 100%;">
-			<!-- // Title -->
-			<div style="display: flex;">
-				<div class="d-flex flex-row align-items-center bd-highlight"
-					style="display: flex !important; padding: 48px 0px 16px 0px;">
-					<div class="d-flex align-items-center justify-content-center">
-						<img src="images/logo.png"
-							style="display: flex !important; height: 48px; width: 48px; margin: 8px; "></img>
-					</div>
-					<div class="" style="display: flex; justify-content: center; align-items: center;">
-						<h1 style="font-weight: bold;">
-							<span class="header-accent">UNT</span>&nbspGrade Distributions
-						</h1>
-					</div>
-				</div>
-			</div>
-			<div class="" style="display: flex; align-items: center; justify-content: center; flex: 1;">
-				<div class="col-lg-6 col-md-12" style="display: flex; flex-direction: column; font-size: 3vmin">
-					<h1 class="header-accent"
-						style="text-align: center; margin-bottom: 16px; padding-bottom: 32px; border-bottom: 1.5px solid lightgray">
-						Free, as they should be
-					</h1>
-					<p>
-						Unlimited access to grade distributions in all classes for the
-						Fall 2017, Spring 2018, Fall 2018, and Spring 2019 semesters.
-						Transparency for your academic success.
-					</p>
-					<p>
-						Grade distributions are historical data on how many letter
-						grades of each kind were handed out in classes. Picking classes
-						with favorable grade distributions helps you increase your
-						chance of academic success and timely graduation.
-					</p>
-					<div style="display: flex; align-items: center; justify-content: center;">
-						<button class="button" style="margin-right: 16px;"
-							 onclick="document.getElementById('results').scrollIntoView({behavior: 'smooth', block: 'start'})">Get Started</button>
-						<button class="button" style="background: white; color: #3eb375;">Support Us</button>
-					</div>
-				</div>
+	<div id="landing">
+		<h1>
+			<img src="images/logo.png">
+			<span class="accent">UNT</span>&nbsp;Grade Distributions
+		</h1>
+		<div class="content">
+			<h2>Free, as they should be</h2>
+			<p>
+				Unlimited access to grade distributions in all classes in fall 2017, spring 2018, fall 2018, and spring 2019. Transparency for your academic success.
+			</p>
+			<p>
+				Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.
+			</p>
+			<div class="buttons">
+				<button onclick="document.getElementById('results').scrollIntoView({behavior: 'smooth', block: 'start'})">
+					Get Started
+				</button>
+				<button onclick="document.getElementBySelecter('#search h2').scrollIntoView({behavior: 'smooth', block: 'start'})">
+					Support Us
+				</button>
 			</div>
 		</div>
 	</div>
+
 	<!-- Search section -->
 	<div id="search" class="container-fluid">
 		<a id="results"></a>
