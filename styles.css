@@ -3,27 +3,27 @@ html {
 }
 
 body {
-	height: 100%;
 	font-family: "Poppins", sans-serif;
+	overflow-x: hidden;
 }
-  
+
 .header-black {
 	font-family: "Lato", Arial, sans-serif;
 	color: black;
 }
-  
+
 .header-white {
 	font-family: "Lato", Arial, sans-serif;
 	color: white;
 }
-  
+
 .header-accent {
 	font-family: "Lato", Arial, sans-serif;
 	color: #3eb375;
 }
-  
-.button {
-	margin-top: 64px;
+
+button {
+	margin-top: 32px;
 	padding: 4px 16px;
 	font-family: "Lato", Arial, sans-serif;
 	font-size: 20px;
@@ -31,49 +31,135 @@ body {
 	color: white;
 	border: 2px solid #3eb375;
 	border-radius: 5px;
+	margin: 20px;
+}
+
+button:nth-of-type(2) {
+	color: #3eb375;
+	background: white;
 }
 
 .button:hover {
 	transform: scale(1.05);
 	transition: transform 0.35s ease-in-out;
 }
-  
+
 #landing {
-	padding-bottom: 1%;
+	width: 100%;
+	height: 100vh;
+	padding: 20px;
 	overflow: visible;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+
+#landing h1 {
+	max-width: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	padding: 10px;
+	font-size: 2em;
+}
+
+@media screen and (min-width: 903px) {
+	#landing h1 {
+		font-size: 3em;
+	}
+}
+
+#landing h1 img {
+	height: 2em;
+}
+
+#landing h1 .accent {
+	color: #3eb375;
+}
+
+#landing .content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+	#landing .content {
+		width: 730px;
+	}
+}
+
+#landing .content h2 {
+	font-size: 1.75em;
+	color: #3eb375;
+}
+
+@media screen and (min-width: 401px) {
+	#landing .content h2 {
+		font-size: 2em;
+	}
+}
+
+
+#landing .content p {
+	padding-top: 10px;
+	font-size: 1.2em;
+}
+
+#landing .content p:first-of-type {
+	border-top: 1px solid #999;
+}
+
+#landing .buttons {
+	display: flex;
 }
 
 #search {
-	padding-top: 1.1%;
-	background: linear-gradient(0deg, rgba(62,179,117,1) 99%, rgba(255,255,255,1) 100%);
+	width: 100%;
+	padding-top: 1.2%;
+	padding-bottom: 5%;
+	background: #3eb375;
 }
-  
+
+@media screen and (min-width: 1212px) {
+	#search {
+		height: 100vh;
+	}
+}
+
 .results {
 	background-color: white;
 	overflow: auto;
-	max-height: 100vh;
+	max-height: 30vh;
 	font-family: "Lato", Arial, sans-serif;
 	border: 1px solid #CCCCCC;
 	border-radius: 5px;
 }
-  
+
 .extras {
 	height: 50%;
 	font-family: "Lato", Arial, sans-serif;
 }
-  
+
 .donations {
 	height: 40%;
 	background-color: #3eb375;
 	font-family: "Lato", Arial, sans-serif;
 }
-  
+
 .footer {
 	color: white;
 	padding-top: 1.1%;
 	background-color: #333f50;
 	overflow: auto;
 	font-family: "Lato", Arial, sans-serif;
+
+	flex-shrink: 0;
+	width: 100%;
 }
 
 .collapsible {
