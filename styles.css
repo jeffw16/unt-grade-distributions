@@ -39,9 +39,16 @@ button:nth-of-type(2) {
 	background: white;
 }
 
-.button:hover {
+button:not(.disabled):hover {
 	transform: scale(1.05);
 	transition: transform 0.35s ease-in-out;
+}
+
+.disabled {
+	background: #DCDCDC !important;
+	color: #afafaf !important;
+	border-color: #afafaf !important;
+	cursor: default;
 }
 
 #landing {
