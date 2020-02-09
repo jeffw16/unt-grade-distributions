@@ -28,6 +28,7 @@
 </head>
 
 <body>
+	<div class="page-wrapper">
 	<!-- // Landing section -->
 	<div id="landing">
 		<h1>
@@ -43,7 +44,7 @@
 				Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.
 			</p>
 			<div class="buttons">
-				<button onclick="document.getElementById('results').scrollIntoView({behavior: 'smooth', block: 'start'})">
+				<button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'})">
 					Get Started
 				</button>
 				<button class="disabled" onclick="document.getElementBySelecter('#search h2').scrollIntoView({behavior: 'smooth', block: 'start'})" title="Sorry, at the moment we are not in need of donations!">
@@ -54,16 +55,13 @@
 	</div>
 
 	<!-- Search section -->
-	<div id="search" class="container-fluid">
-		<a id="results"></a>
-		<div class="row">
-			<div class="col-lg-2"></div>
-			<div class="col-lg-3">
-				<p></p>
-				<h2 class="header-accent" style="color:white">Search</h2>
-				<div class="form-group">
-					<label for="semester" style="color:white">Semester</label>
-					<select name="semester" id="semester" onfocus="this.selectedIndex = 0;" onchange="instantFind();">
+	<div id="main">
+		<div id="search">
+			<h2>Search</h2>
+			<form onsubmit="instantFind()" action="javascript:void(0)">
+				<div class="form-item">
+					<label for="semester">Semester</label>
+					<select id="semester" name="semester">
 						<option value="all">All semesters</option>
 						<option value="2017 Fall">2017 Fall - 1178</option>
 						<option value="2018 Spring">2018 Spring - 1181</option>
@@ -71,93 +69,83 @@
 						<option value="2019 Spring">2019 Spring - 1191</option>
 					</select>
 				</div>
-				<form onsubmit="instantFind()" action="javascript:void(0)">
-					<div class="well well-sm">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label for="subject" style="color:white;">Subject</label>
-									<input type="text" class="form-control" name="subject" id="subject"
-										placeholder="MATH" oninput="instantFind()" />
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label for="course" style="color:white;">Course number</label>
-									<input type="text" class="form-control" name="course" id="course" placeholder="1710"
-										oninput="instantFind()" />
-								</div>
-							</div>
-						</div>
+				<div class="double-form-item">
+					<div class="form-item">
+						<label for="subject">Subject</label>
+						<input id="subject" name="subject" placeholder="MATH" oninput="instantFind()">
 					</div>
-					<div class="well well-sm">
-						<div class="form-group">
-							<label for="desc" style="color:white;">Course title</label>
-							<input type="text" class="form-control" name="desc" id="desc" placeholder="CALCULUS I"
-								oninput="instantFind()" />
-						</div>
+					<div class="form-item">
+						<label for="course">Course</label>
+						<input id="course" name="course" placeholder="1710" oninput="instantFind()">
 					</div>
-					<div class="well well-sm">
-						<div class="form-group">
-							<label for="instructor" style="color:white;">Instructor</label>
-							<input type="text" class="form-control" name="instructor" id="instructor"
-								placeholder="Smith" oninput="instantFind()" />
-						</div>
-					</div>
-					<button class="btn btn-primary" style="width:100%" type="submit">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						Search
-					</button>
-				</form>
-				<p></p>
-				<h2 class="header-accent" style="color:white">Sections</h3>
-					<div class="results">
-						<ul id="select_result" style="color: black">
-							<p style="color:#CCCCCC;">
-								Any classes found matching the search criteria will be listed here
-							</p>
-						</ul>
-					</div>
+				</div>
+				<div class="form-item">
+					<label for="desc">Class Name</label>
+					<input id="desc" name="desc" placeholder="CALCULUS I" oninput="instantFind()">
+				</div>
+				<div class="form-item">
+					<label for="instructor">Instructor</label>
+					<input id="instructor" name="instructor" placeholder="Smith" oninput="instantFind()">
+				</div>
+				<button id="search-button">
+					Search
+				</button>
+			</form>
+		</div>
+		<div id="sections">
+			<h2>Select</h2>
+			<ul id="select_result">
+				<p>
+					Any classes found matching the search criteria will be listed here
+				</p>
+			</ul>
+		</div>
+		<div id="graph">
+			<div id="results">
+				<h2>Results</h2>
+				<div id="chart">
+					Your graph will be displayed here
+				</div>
 			</div>
-			<div class="col-md-5">
-				<p></p>
-				<a id="graphs"></a>
-				<h2 class="header-accent" style="color:white">Results</h2>
-				<p id="stats" style="color: white"></p>
-				<div id="chart" style="width:100%; height:400px; color:white">
-					Your graph will be displayed here.
-				</div>
-				<p></p>
-				<div id="share" style="display: none; color:white">
-					<h2 class="header-accent" style="color:white">Share</h2>
-					<p>
-						Click on the field below and copy the URL to share this specific class with your friends.
-					</p>
-					<div class="form-group">
-						<input type="text" class="form-control" name="sharelink" id="sharelink"
-							onClick="this.setSelectionRange(0, this.value.length)" />
-					</div>
-					<button class="collapsible" style="background: white; color: #3eb375;">Toggle grading key</button>
-					<div class="content" id="key" style="display: none">
-						<div class="card card-body">
-							<ul style="color: black">
-								<li><b>A</b> - Excellent</li>
-								<li><b>B</b> - Good</li>
-								<li><b>C</b> - Fair</li>
-								<li><b>D</b> - Passing</li>
-								<li><b>F</b> - Failure</li>
-								<li><b>P</b> - Passed</li>
-								<li><b>NP</b> - Not passed</li>
-								<li><b>W</b> - Withdrawal without penalty</li>
-								<li><b>WF</b> - Withdrawal and failure</li>
-								<li><b>I</b> - Incomplete</li>
-								<li><b>PR</b> - Thesis progress</li>
-								<li><b>NPR</b> - No thesis progress</li>
-								<li><b>Z</b> - Placeholder for improperly received/recorded grades </li>
-							</ul>
-						</div>
-					</div>
-				</div>
+			<div id="share" class="form-item">
+				<label for="sharelink">Share</label>
+				<input id="sharelink" name="sharelink" type="text" onclick="this.setSelectionRange(0, this.value.length)">
+			</div>
+			<div id="grade-key">
+				<h2>Grading Key</h2>
+				<ul>
+					<li>
+						<span class="accent">A</span> - Excellent
+						&nbsp;|&nbsp;
+						<span class="accent">B</span> - Good
+					</li>
+					<li>
+						<span class="accent">C</span> - Fair
+						&nbsp;|&nbsp;
+						<span class="accent">D</span> - Passing
+					</li>
+					<li>
+						<span class="accent">F</span> - Fail
+						&nbsp;|&nbsp;
+						<span class="accent">NP</span> - Not Passed
+					</li>
+					<li>
+						<span class="accent">I</span> - Incomplete
+					</li>
+					<li>
+						<span class="accent">W</span> - Withdrawal, No Penalty
+						&nbsp;|&nbsp;
+						<span class="accent">WR</span> - Withdrawal, Failure
+					</li>
+					<li>
+						<span class="accent">PR</span> - Thesis Progress
+						&nbsp;|&nbsp;
+						<span class="accent">NPR</span> - No Thesis Progress
+					</li>
+					<li>
+						<span class="accent">Z</span> - Placeholder for improperly recorded grades
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

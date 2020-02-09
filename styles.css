@@ -7,6 +7,13 @@ body {
 	overflow-x: hidden;
 }
 
+button {
+	padding: 4px 16px;
+	font-family: "Lato", Arial, sans-serif;
+	border-radius: 5px;
+	border: none;
+}
+
 .header-black {
 	font-family: "Lato", Arial, sans-serif;
 	color: black;
@@ -22,7 +29,7 @@ body {
 	color: #3eb375;
 }
 
-button {
+#landing button {
 	margin-top: 32px;
 	padding: 4px 16px;
 	font-family: "Lato", Arial, sans-serif;
@@ -34,12 +41,12 @@ button {
 	margin: 20px;
 }
 
-button:nth-of-type(2) {
+#landing button:nth-of-type(2) {
 	color: #3eb375;
 	background: white;
 }
 
-button:not(.disabled):hover {
+#landing button:not(.disabled):hover {
 	transform: scale(1.05);
 	transition: transform 0.35s ease-in-out;
 }
@@ -125,17 +132,151 @@ button:not(.disabled):hover {
 	display: flex;
 }
 
-#search {
-	width: 100%;
-	padding-top: 1.2%;
-	padding-bottom: 5%;
+#main {
+	display: flex;
+	flex-direction: column;
 	background: #3eb375;
 }
 
-@media screen and (min-width: 1212px) {
-	#search {
-		height: 100vh;
+/* change layout to column at screens at least 968px in width */
+@media screen and (min-width: 968px) {
+	#main {
+		flex-direction: row;
 	}
+}
+
+#main h2 {
+	color: white;
+	padding: 0 20px;
+}
+
+.main .accent {
+	font-weight: bold;
+}
+
+#search {
+	flex: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	padding: 20px;
+}
+
+#search form {
+	display: flex;
+	width: 100%;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+#search form select {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+}
+
+#search form select option {
+	display: flex;
+}
+
+.form-item {
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 100%;
+
+	padding: 20px;
+}
+
+.form-item label {
+	font-size: 1.5em;
+	color: white;
+}
+
+.form-item input {
+	border: none;
+	width: 100%;
+	border-radius: 5px;
+	padding: 0 5%;
+}
+
+.double-form-item {
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+
+#search-button {
+	font-size: 1.5em;
+	width: calc(100% - 40px);
+	color: white;
+	background: #337ab7;
+}
+
+#sections {
+	flex: 1;
+	display: flex;
+	height: 100vh;
+	flex-flow: column nowrap;
+	padding: 20px;
+}
+
+#select_result {
+	background: white;
+	max-height: 80%;
+	overflow: scroll;
+
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
+}
+
+#select_result li {
+	margin-left: 5%;
+	padding: 5px;
+}
+
+#select_result p {
+	color: #a5a5a5;
+}
+
+#sections ul{
+	color: white;
+}
+
+#graph {
+	display: flex;
+	flex-direction: column;
+	justify-items: start;
+	padding: 20px;
+	height: 100%;
+	flex: 1;
+}
+
+#chart {
+	color: white;
+	padding: 20px;
+}
+
+#share {
+	display: none;
+}
+
+#share input {
+	padding: 2.5% 5%;
+}
+
+/* hide grade-key until graph is displayed */
+#grade-key {
+	display: none;
+}
+
+#grade-key li {
+	color: white;
+}
+
+#grade-key li .accent {
+	font-weight: bold;
 }
 
 .results {
