@@ -151,6 +151,7 @@ button {
 
 #main h2 {
 	color: white;
+	text-decoration: underline;
 }
 
 #main > div > h2 {
