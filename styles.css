@@ -68,6 +68,10 @@ button {
 	justify-content: center;
 }
 
+#landing > *:not(.buttons) {
+	padding: 20px;
+}
+
 
 #landing h1 {
 	max-width: 80%;
