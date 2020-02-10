@@ -125,7 +125,7 @@ button {
 }
 
 #landing .content p:first-of-type {
-	border-top: 1px solid #999;
+	border-top: 1.5px solid lightgray;
 }
 
 #landing .buttons {
