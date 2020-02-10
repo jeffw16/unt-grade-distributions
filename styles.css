@@ -68,11 +68,6 @@ button {
 	justify-content: center;
 }
 
-#landing > *:not(.buttons) {
-	padding: 20px;
-}
-
-
 #landing h1 {
 	max-width: 80%;
 	display: flex;
@@ -129,6 +124,11 @@ button {
 #landing .content p:first-of-type {
 	border-top: 1.5px solid lightgray;
 }
+
+#landing .content > *:not(.buttons) {
+	padding: 20px;
+}
+
 
 #landing .buttons {
 	display: flex;
