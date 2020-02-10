@@ -154,7 +154,7 @@ button {
 }
 
 #main > div > h2 {
-	padding: 0 20px;
+	padding: 0 15px;
 }
 
 .main .accent {
@@ -220,11 +220,10 @@ button {
 	color: white;
 	background: #337ab7;
 }
-
 #sections {
 	display: flex;
 	flex-flow: column nowrap;
-	padding: 20px;
+	padding: 15px;
 }
 
 #select_result {
@@ -265,12 +264,12 @@ button {
 }
 
 #graph h2 {
-	padding: 0 20px;
+	padding: 0 15px;
 }
 
 #chart {
 	color: white;
-	padding: 10px;
+	padding: 15px;
 }
 
 #share {
@@ -291,6 +290,36 @@ button {
 	font-weight: bold;
 }
 
+/* make main content thicker on mobile devices */
+@media screen and (max-width: 548px) {
+	.form-item {
+		padding: 15px 0;
+	}
+
+	.double-form-item .form-item:nth-child(1) {
+		padding: 15px 15px 15px 0;
+	}
+
+	.double-form-item .form-tiem:nth-child(2) {
+		padding: 15px 0 15px 15px;
+	}
+
+	#search-button {
+		width: 100%;
+	}
+
+	#sections {
+		padding: 5px 0;
+	}
+
+	#graph {
+		padding: 20px 5px;
+	}
+
+	#graph .form-item {
+		padding: 0 15px;
+	}
+}
 .results {
 	background-color: white;
 	overflow: auto;
