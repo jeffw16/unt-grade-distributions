@@ -355,6 +355,14 @@ button {
 	font-family: "Lato", Arial, sans-serif;
 }
 
+#footer .line {
+	display: inline-block;
+}
+
+#footer > * {
+	text-align: center;
+}
+
 #footer a {
 	color: #3eb375;
 }
