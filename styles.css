@@ -229,7 +229,7 @@ button {
 #select_result {
 	background: white;
 	max-height: 85vh;
-	overflow: scroll;
+	overflow: auto;
 
 	border-radius: 5px;
 	padding: 10px;
