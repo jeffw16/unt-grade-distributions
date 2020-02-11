@@ -153,11 +153,17 @@ button {
 
 #main h2 {
 	color: white;
-	text-decoration: underline;
 }
 
-#main > div > h2 {
+.content-header {
 	padding: 0 15px;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid white !important;
+	width: calc(100% - 30px);
+	margin: 0 auto;
 }
 
 .main .accent {
@@ -223,10 +229,21 @@ button {
 	color: white;
 	background: #337ab7;
 }
+
 #sections {
 	display: flex;
 	flex-flow: column nowrap;
 	padding: 15px;
+}
+
+#sections > h2 {
+	padding: 0;
+}
+
+#sections > hr {
+	/* make hr spaced away from the result pane */
+	width: 100%;
+	margin-bottom: 1em;
 }
 
 #select_result {
@@ -266,10 +283,6 @@ button {
 	flex: 1;
 }
 
-#graph h2 {
-	padding: 0 15px;
-}
-
 #chart {
 	color: white;
 	padding: 15px;
@@ -295,6 +308,14 @@ button {
 
 /* make main content thicker on mobile devices */
 @media screen and (max-width: 548px) {
+	.content-header {
+		padding: 0;
+	}
+
+	hr {
+		width: 100%;
+	}
+
 	.form-item {
 		padding: 15px 0;
 	}
@@ -316,11 +337,15 @@ button {
 	}
 
 	#graph {
-		padding: 20px 5px;
+		padding: 20px;
 	}
 
 	#graph .form-item {
 		padding: 0 15px;
+	}
+
+	#chart {
+		padding: 15px 0;
 	}
 }
 .results {
