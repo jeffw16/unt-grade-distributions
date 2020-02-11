@@ -152,7 +152,8 @@ button {
 	}
 }
 
-#main h2 {
+#main h2,
+#main h3{
 	color: white;
 }
 
