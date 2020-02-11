@@ -1,4 +1,0 @@
-#TODO list:
-#       1. Escaped characters at the bottom of index.html
-#		2. Find a way to re-generate fall2017spring2018.json using the improved parse.php without compromising 'term' field		
-#       3. other mobile user only modifying.

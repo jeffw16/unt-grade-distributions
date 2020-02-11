@@ -64,7 +64,7 @@ function findClasses() {
 		.exec((err, docs) => {
 		if (docs.length == 0) {
 			select_result.innerHTML =
-			"No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.";
+			"<p>No results were found. Try modifying your query. While we strive to keep a complete record, there may be some deficiencies in what the registrar provides us.</p>";
 		} else {
 			select_result.innerHTML = ""; // clears all section results
 			for (var i = 0; i < docs.length; i++) {

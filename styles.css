@@ -115,7 +115,6 @@ button {
 	}
 }
 
-
 #landing .content p {
 	padding-top: 10px;
 	font-size: 1.2em;
@@ -200,9 +199,7 @@ hr {
 .form-item {
 	display: flex;
 	flex-flow: column nowrap;
-
 	width: 100%;
-
 	padding: 15px;
 }
 
@@ -223,7 +220,6 @@ hr {
 	display: flex;
 	flex-flow: row nowrap;
 }
-
 
 #search-button {
 	font-size: 1.5em;
@@ -252,7 +248,6 @@ hr {
 	background: white;
 	max-height: 85vh;
 	overflow: auto;
-
 	border-radius: 5px;
 	padding: 10px;
 }
@@ -376,9 +371,7 @@ hr {
 	width: 100%;
 	display: flex;
 	flex-flow: column nowrap;
-
 	align-items: center;
-
 	color: white;
 	background: #333f50;
 	font-family: "Lato", Arial, sans-serif;
