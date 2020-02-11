@@ -7,6 +7,13 @@ body {
 	overflow-x: hidden;
 }
 
+button {
+	padding: 4px 16px;
+	font-family: "Lato", Arial, sans-serif;
+	border-radius: 5px;
+	border: none;
+}
+
 .header-black {
 	font-family: "Lato", Arial, sans-serif;
 	color: black;
@@ -22,7 +29,7 @@ body {
 	color: #3eb375;
 }
 
-button {
+#landing button {
 	margin-top: 32px;
 	padding: 4px 16px;
 	font-family: "Lato", Arial, sans-serif;
@@ -34,12 +41,12 @@ button {
 	margin: 20px;
 }
 
-button:nth-of-type(2) {
+#landing button:nth-of-type(2) {
 	color: #3eb375;
 	background: white;
 }
 
-button:not(.disabled):hover {
+#landing button:not(.disabled):hover {
 	transform: scale(1.05);
 	transition: transform 0.35s ease-in-out;
 }
@@ -53,16 +60,13 @@ button:not(.disabled):hover {
 
 #landing {
 	width: 100%;
-	height: 100vh;
-	padding: 20px;
+	min-height: 100vh;
 	overflow: visible;
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
-
 
 #landing h1 {
 	max-width: 80%;
@@ -117,24 +121,234 @@ button:not(.disabled):hover {
 	font-size: 1.2em;
 }
 
-#landing .content p:first-of-type {
-	border-top: 1px solid #999;
+#landing hr {
+	border-color: lightgray;
+	margin-bottom: 0;
 }
+
+#landing .content > *:not(hr):not(.buttons) {
+	padding: 20px;
+}
+
 
 #landing .buttons {
 	display: flex;
 }
 
-#search {
+#main {
+	line-height: 1.5em;
+	display: flex;
 	width: 100%;
-	padding-top: 1.2%;
-	padding-bottom: 5%;
+	flex-direction: column;
 	background: #3eb375;
+	min-height: 0;
 }
 
-@media screen and (min-width: 1212px) {
-	#search {
+/* change layout to column at screens at least 968px in width */
+@media screen and (min-width: 968px) {
+	#main {
+		flex-direction: row;
 		height: 100vh;
+	}
+}
+
+#main h2,
+#main h3{
+	color: white;
+}
+
+.content-header {
+	padding: 0 15px;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid white;
+	width: calc(100% - 30px);
+	margin: 0 auto;
+}
+
+.main .accent {
+	font-weight: bold;
+}
+
+#search {
+	flex: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
+	padding: 20px;
+}
+
+#search form {
+	display: flex;
+	width: 100%;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+#search form select {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+}
+
+#search form select option {
+	display: flex;
+}
+
+.form-item {
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 100%;
+
+	padding: 15px;
+}
+
+.form-item label {
+	font-size: 1.5em;
+	color: white;
+}
+
+.form-item input {
+	border: none;
+	width: 100%;
+	border-radius: 5px;
+	padding: .5em;
+}
+
+.double-form-item {
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+
+#search-button {
+	font-size: 1.5em;
+	width: calc(100% - 30px);
+	color: white;
+	background: #337ab7;
+}
+
+#sections {
+	display: flex;
+	flex-flow: column nowrap;
+	padding: 15px;
+}
+
+#sections > h2 {
+	padding: 0;
+}
+
+#sections > hr {
+	/* make hr spaced away from the result pane */
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+#select_result {
+	background: white;
+	max-height: 85vh;
+	overflow: auto;
+
+	border-radius: 5px;
+	padding: 10px;
+}
+
+/* clamp results screen size on desktop */
+@media screen and (min-width: 968px) {
+	#select_result {
+		max-height: 24vh;
+	}
+}
+
+#select_result li {
+	margin-left: 5%;
+	padding: 5px;
+}
+
+#select_result p {
+	color: #a5a5a5;
+}
+
+#sections ul{
+	color: white;
+}
+
+#graph {
+	display: flex;
+	flex-direction: column;
+	justify-items: start;
+	padding: 20px;
+	flex: 1;
+}
+
+#chart {
+	color: white;
+	padding: 15px;
+}
+
+#share {
+	display: none;
+}
+
+#share .form-item {
+	padding: 0;
+}
+
+/* hide grade-key until graph is displayed */
+#grade-key {
+	display: none;
+	line-height: 1.2em;
+	padding: 15px 0;
+}
+
+#grade-key li {
+	color: white;
+}
+
+#grade-key li .accent {
+	font-weight: bold;
+}
+
+/* make main content thicker on mobile devices */
+@media screen and (max-width: 548px) {
+	.content-header {
+		padding: 0;
+	}
+
+	#main hr {
+		width: 100%;
+	}
+
+	.form-item {
+		padding: 15px 0;
+	}
+
+	.double-form-item .form-item:nth-child(1) {
+		padding: 15px 15px 15px 0;
+	}
+
+	.double-form-item .form-tiem:nth-child(2) {
+		padding: 15px 0 15px 15px;
+	}
+
+	#search-button {
+		width: 100%;
+	}
+
+	#sections {
+		padding: 5px 0;
+	}
+
+	#graph {
+		padding: 20px;
+	}
+
+	#chart {
+		padding: 15px 0;
 	}
 }
 
@@ -160,8 +374,6 @@ button:not(.disabled):hover {
 
 #footer {
 	width: 100%;
-	padding-top: 1.1%;
-
 	display: flex;
 	flex-flow: column nowrap;
 
@@ -170,6 +382,14 @@ button:not(.disabled):hover {
 	color: white;
 	background: #333f50;
 	font-family: "Lato", Arial, sans-serif;
+}
+
+#footer .line {
+	display: inline-block;
+}
+
+#footer > * {
+	text-align: center;
 }
 
 #footer a {
