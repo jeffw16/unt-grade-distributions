@@ -161,7 +161,7 @@ button {
 
 hr {
 	border: 0;
-	border-top: 1px solid white !important;
+	border-top: 1px solid white;
 	width: calc(100% - 30px);
 	margin: 0 auto;
 }
@@ -292,10 +292,15 @@ hr {
 	display: none;
 }
 
+#share .form-item {
+	padding: 0;
+}
+
 /* hide grade-key until graph is displayed */
 #grade-key {
 	display: none;
 	line-height: 1.2em;
+	padding: 15px 0;
 }
 
 #grade-key li {
@@ -340,14 +345,11 @@ hr {
 		padding: 20px;
 	}
 
-	#graph .form-item {
-		padding: 0 15px;
-	}
-
 	#chart {
 		padding: 15px 0;
 	}
 }
+
 .results {
 	background-color: white;
 	overflow: auto;
