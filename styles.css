@@ -1,8 +1,6 @@
-html {
+html, body {
 	height: 100%;
-}
-
-body {
+	width: 100%;
 	font-family: "Poppins", sans-serif;
 	overflow-x: hidden;
 }
@@ -14,36 +12,20 @@ button {
 	border: none;
 }
 
-.header-black {
-	font-family: "Lato", Arial, sans-serif;
-	color: black;
-}
-
-.header-white {
-	font-family: "Lato", Arial, sans-serif;
-	color: white;
-}
-
-.header-accent {
-	font-family: "Lato", Arial, sans-serif;
-	color: #3eb375;
-}
-
 #landing button {
 	margin-top: 32px;
-	padding: 4px 16px;
-	font-family: "Lato", Arial, sans-serif;
 	font-size: 20px;
-	background-color: #3eb375;
+
 	color: white;
+	background-color: #3eb375;
+
 	border: 2px solid #3eb375;
-	border-radius: 5px;
 	margin: 20px;
 }
 
 #landing button:nth-of-type(2) {
 	color: #3eb375;
-	background: white;
+	background-color: white;
 }
 
 #landing button:not(.disabled):hover {
@@ -52,7 +34,7 @@ button {
 }
 
 .disabled {
-	background: #DCDCDC !important;
+	background-color: #DCDCDC !important;
 	color: #afafaf !important;
 	border-color: #afafaf !important;
 	cursor: default;
@@ -139,7 +121,7 @@ button {
 	display: flex;
 	width: 100%;
 	flex-direction: column;
-	background: #3eb375;
+	background-color: #3eb375;
 	min-height: 0;
 }
 
@@ -149,6 +131,15 @@ button {
 		flex-direction: row;
 		height: 100vh;
 	}
+
+	#search {
+		padding: 50px 0 50px 50px;
+	}
+
+	#graph {
+		padding: 50px 50px 50px 0;
+	}
+
 }
 
 #main h2,
@@ -167,16 +158,12 @@ hr {
 	margin: 0 auto;
 }
 
-.main .accent {
-	font-weight: bold;
-}
-
 #search {
 	flex: 1;
 	display: flex;
 	flex-flow: column nowrap;
-	justify-content: start;
 	padding: 20px;
+	justify-content: start;
 }
 
 #search form {
@@ -225,7 +212,7 @@ hr {
 	font-size: 1.5em;
 	width: calc(100% - 30px);
 	color: white;
-	background: #337ab7;
+	background-color: #337ab7;
 }
 
 #sections {
@@ -245,7 +232,7 @@ hr {
 }
 
 #select_result {
-	background: white;
+	background-color: white;
 	max-height: 85vh;
 	overflow: auto;
 	border-radius: 5px;
@@ -289,10 +276,6 @@ hr {
 	display: none;
 }
 
-#share .form-item {
-	padding: 0;
-}
-
 /* hide grade-key until graph is displayed */
 #grade-key {
 	display: none;
@@ -326,7 +309,7 @@ hr {
 		padding: 15px 15px 15px 0;
 	}
 
-	.double-form-item .form-tiem:nth-child(2) {
+	.double-form-item .form-item:nth-child(2) {
 		padding: 15px 0 15px 15px;
 	}
 
@@ -338,33 +321,9 @@ hr {
 		padding: 5px 0;
 	}
 
-	#graph {
-		padding: 20px;
-	}
-
 	#chart {
 		padding: 15px 0;
 	}
-}
-
-.results {
-	background-color: white;
-	overflow: auto;
-	max-height: 30vh;
-	font-family: "Lato", Arial, sans-serif;
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-}
-
-.extras {
-	height: 50%;
-	font-family: "Lato", Arial, sans-serif;
-}
-
-.donations {
-	height: 40%;
-	background-color: #3eb375;
-	font-family: "Lato", Arial, sans-serif;
 }
 
 #footer {
@@ -373,7 +332,7 @@ hr {
 	flex-flow: column nowrap;
 	align-items: center;
 	color: white;
-	background: #333f50;
+	background-color: #333f50;
 	font-family: "Lato", Arial, sans-serif;
 }
 
@@ -387,14 +346,4 @@ hr {
 
 #footer a {
 	color: #3eb375;
-}
-
-.collapsible {
-	font-family: "Lato", Arial, sans-serif;
-	font-size: 20px;
-	background-color: #3eb375;
-	color: white;
-	border: 2px solid #3eb375;
-	border-radius: 5px;
-	width: 100%;
 }
