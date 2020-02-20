@@ -226,3 +226,19 @@ function compileChart(result) {
 	$("#share").show();
 	$("#grade-key").show();
 }
+
+function closeBanner() {
+	let banner = $("#banner");
+
+	// find banner size
+	let bannerSize = banner.outerHeight();
+
+	// move banner
+	banner.css("bottom", bannerSize * -1);
+
+	// once banner is out of sight, don't display it anymore
+	setTimeout(() => {
+		banner.addClass("hidden");
+	}, 1500);
+
+}
