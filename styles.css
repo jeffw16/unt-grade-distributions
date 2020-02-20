@@ -29,6 +29,7 @@ button {
 	text-align: center;
 	padding: 1vh;
 	width: 100%;
+	font-size: .8rem;
 
 	color: white;
 	background-color: #333;
@@ -40,6 +41,12 @@ button {
 
 	pointer-events: none;
 	border-bottom: .5em solid #272727;
+}
+
+@media screen and (min-height: 668px) {
+	#banner {
+		font-size: 1rem;
+	}
 }
 
 #banner div {
