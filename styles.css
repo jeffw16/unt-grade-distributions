@@ -5,6 +5,10 @@ html, body {
 	overflow-x: hidden;
 }
 
+html {
+    overflow-y: hidden;
+}
+
 button {
 	padding: 4px 16px;
 	font-family: "Lato", Arial, sans-serif;
@@ -33,6 +37,7 @@ button {
 
 	color: white;
 	background-color: #333;
+	border-bottom: .5em solid #272727;
 
 	-moz-transition: bottom 1s ease-in-out;
 	-o-transition: bottom 1s ease-in-out;
@@ -40,7 +45,6 @@ button {
 	transition: bottom 1s ease-in-out;
 
 	pointer-events: none;
-	border-bottom: .5em solid #272727;
 }
 
 @media screen and (min-height: 668px) {
