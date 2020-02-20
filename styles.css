@@ -51,6 +51,10 @@ button {
 	margin: 0;
 }
 
+#banner a {
+	pointer-events: auto;
+}
+
 #banner button {
 	pointer-events: auto;
 	margin: .5em;
