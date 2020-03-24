@@ -33,7 +33,7 @@ function generateContainsRegex(str) {
 //search for classes if enough input is given
 function instantFind() {
 	clearTimeout(delayTimer);
-	delayTImer = setTimeout(function() {
+	delayTimer = setTimeout(function() {
 		var subject = document.getElementById("subject").value;
 		var num = document.getElementById("course").value;
 		var desc = document.getElementById("desc").value;
