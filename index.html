@@ -1,225 +1,243 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<!-- Global site tag (gtag.js) - Google Analytics below until end of script -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152614845-1"></script>
-	<script>
-  	window.dataLayer = window.dataLayer || [];
-  	function gtag(){dataLayer.push(arguments);}
-  	gtag('js', new Date());
 
-  	gtag('config', 'UA-152614845-1');
+<head>
+	<title>UNT Grade Distributions</title>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152614845-1"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag("js", new Date());
+		gtag("config", "UA-152614845-1");
 	</script>
 
-	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-	<meta content="utf-8" http-equiv="encoding">	
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNT Grade Distributions</title>
-    <!-- CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<!-- one line below is the link to the external CSS file -->
-	<link href="styles.css" rel="stylesheet" type="text/css">
 
-  </head>
-  <body>
-    <div class="banner topbanner untgreen">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1 style="text-align: center;"><span style="font-size: 32px"><b>UNT Grade Distributions</b></span></h1>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-            <div class="row">
-              <div class="col-md-2">
-                <!-- nothing -->
-              </div>
-              <div class="col-md-8">
-              </div>
-              <div class="col-md-2">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <!-- nothing -->
-              </div>
-              <div class="col-md-4">
-                <h2>Free, as they should be</h2>
-                <p>Unlimited access to grade distributions in all classes in fall 2017, spring 2018, fall 2018, and spring 2019. Transparency for your academic success.</p>
-                <p>Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.</p>
-              </div>
-              <div class="col-md-4">
-                <h2>Instructions</h2>
-                <p>Select the semester you are interested in, and type in either the subject and course number or the instructor or both. You can specify partial queries (for instance, "Smith" or even "Smi" instead of "John Smith").</p>
-                <p>Relevant sections will show up below the search form. Select the section you want to view and see its graph appear to the right.</p>
-              </div>
-              <div class="col-md-2">
-                <!-- nothing -->
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-3">
-                <!-- Query -->
-                <h2>Search</h2>
-                <div class="form-group">
-                  <label for="semester">Semester</label>
-                  <select name="semester" id="semester" onfocus="this.selectedIndex = -1;" onchange="instantFind();">
-                    <option value="all">All semesters</option>
-                    <option value="2017 Fall">2017 Fall - 1178</option>
-                    <option value="2018 Spring">2018 Spring - 1181</option>
-                    <option value="2018 Fall">2018 Fall - 1188</option>
-                    <option value="2019 Spring">2019 Spring - 1191</option>
-                    <!-- <option value="2019 Fall" disabled>2019 Fall - 1199 (Coming soon!)</option> -->
-                  </select>
-                </div>
-                <form onsubmit="findClasses()" action="javascript:void(0)">
-                    <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="MATH" oninput="instantFind()"/>
-                        </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="course">Course number</label>
-                            <input type="text" class="form-control" name="course" id="course" placeholder="1710" oninput="instantFind()"/>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="well well-sm">
-                    <div class="form-group">
-                        <label for="desc">Course title</label>
-                        <input type="text" class="form-control" name="desc" id="desc" placeholder="CALCULUS I" oninput="instantFind()"/>
-                    </div>
-                    </div>
-                    <div class="well well-sm">
-                    <div class="form-group">
-                        <label for="instructor">Instructor</label>
-                        <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Smith" oninput="instantFind()"/>
-                    </div>
-                    </div>
-                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
-                </form>
-		<h2>Select</h2>
-                <div class ="results">
-                <ul id="select_result">Your search results will be displayed here.</ul>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <!-- Results -->
-                <h2>Results</h2>
-                <p id="stats"></p>
-                <div id="chart" style="width:100%; height:400px;">Your graph will be displayed here.</div>
-                <div id="share" style="display: none;">
-                  <h2>Share</h2>
-                  <p>Click on the field below and copy the URL to share this specific class with your friends.</p>
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="sharelink" id="sharelink" onClick="this.setSelectionRange(0, this.value.length)">
-                  </div>
-                </div>
-                <h2>Grading system key</h2>
-                <ul>
-                  <li><b>A</b> - Excellent</li>
-                  <li><b>B</b> - Good</li>
-                  <li><b>C</b> - Fair</li>
-                  <li><b>D</b> - Passing</li>
-                  <li><b>F</b> - Failure</li>
-                  <li><b>P</b> - Passed</li>
-                  <li><b>NP</b> - Not passed</li>
-                  <li><b>W</b> - Withdrawal without penalty</li>
-                  <li><b>WF</b> - Withdrawal and failure</li>
-                  <li><b>I</b> - Incomplete</li>
-                  <li><b>PR</b> - Thesis progress</li>
-                  <li><b>NPR</b> - No thesis progress</li>
-                  <li><b>Z</b> - Placeholder for improperly received/recorded grades</li>
-                </ul>
-              </div>
-              <div class="col-md-2"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <!-- nothing -->
-              </div>
-              <div class="col-md-4">
-                <h2>Downloading data</h2>
-                <p>The grade distribution data we have is freely available for your perusal in several formats. The original format we received from the registrar was Excel.</p>
-                <p><b>Fall 2017&ndash;Spring 2018</b></p>
-                <ul>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distribution_Request_2017-2018.csv">CSV</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions_Request_2017-2018_Complete.xlsx">XLSX (Excel)</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/fall2017spring2018.json">JSON</a></li>
-                </ul>
-                <p><b>Fall 2018</b></p>
-                <ul>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions-Fall2018.csv">CSV</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions-Fall2018.XLSX">XLSX (Excel)</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/fall2018.json">JSON</a></li>
-                </ul>
-                <p><b>Spring 2019</b></p>
-                <ul>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions-Spring2019.csv">CSV</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/UNT_Grade_Distributions-Spring2019.XLSX">XLSX (Excel)</a></li>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/spring2019.json">JSON</a></li>
-                </ul>
-                <p><b>All semesters</b></p>
-                <ul>
-                  <li><a href="https://jeffw16.github.io/unt-grade-distributions/static/complete.json">JSON</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h2>Donating to the cause</h2>
-                <!-- <p>Grade distributions cost $69.16 per semester to retrieve from the UNT Registrar's Office. Your donations directly fund future grade distribution requests and help students like you choose the best classes.</p>
-                <p>Send $1 or more to our project leader's Venmo: @jeffw16 or <a href="https://www.gofundme.com/untgradedistributions">contribute to our GoFundMe</a>. All donations will be used to fund future semesters' requests and will never be kept for personal gain.</p> -->
-                <p>Thanks to persistent lobbying and the generosity of UNT, grade distributions data are now free of charge to access. As a result, we no longer need donations to sustain us for the next 10 years and we've removed ads from the site. The only cost is the domain; everything else is 100% free! A huge shoutout to the donors who originally made UNTGrades.com possible.</p>
-              </div>
-              <div class="col-md-2">
-                <!-- nothing -->
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <p style="text-align: center;">&copy; 2018&ndash;2019 the UNT Grade Distributions Team: <a href="https://garrettgu.com">Garrett Gu</a>, <a href="https://jeffw.xyz">Jeffrey Wang</a>, <a href="https://www.linkedin.com/in/josephwickline/">Joseph Wickline</a>, <a href = "http://prestja.com">Jacob Preston</a> and <a href = "mailto:JordanHamilton@my.unt.edu">Jordan Hamilton</a>.</p>
-                <p style="text-align: center;">Some functionality borrowed from the UT Catalyst Grade Distributions tool. Not affiliated with or sponsored by the University of North Texas.</p>
-                <p style="text-align: center;"><b>UNT Grade Distributions</b> &middot; <a href="https://utdgrades.com">UT Dallas Grade Distributions</a></p>
-              </div>
-              <div class="col-md-2"></div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <!-- JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="nedb.min.js"></script>
-    <!-- <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="index.js"></script>
-    <script>
-      $(function() {
-        if ( grades !== null ) {
-          var term = getParameterByName('term');
-          var subj = getParameterByName('subj');
-          var num = getParameterByName('num');
-          var sect = getParameterByName('sect');
-          var desc = getParameterByName('desc');
-          var prof = getParameterByName('prof');
-          var grades = JSON.parse(atob(getParameterByName('grades')));
-          var result = {term, subj, num, sect, desc, prof, grades};
-          compileChart( result );
-        }
-      });
-    </script>
-  </body>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+	<meta content="utf-8" http-equiv="encoding" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+		integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link rel="shortcut icon" type="image/png" href="static/logo.png" />
+</head>
+
+<body>
+	<!-- // Landing section -->
+	<div id="landing">
+		<h1>
+			<img src="static/logo.png">
+			<span class="accent">UNT</span>&nbsp;Grade Distributions
+		</h1>
+		<div class="content">
+			<h2>Free, as they should be</h2>
+			<hr/>
+			<p>
+				Unlimited access to grade distributions in all classes in Fall 2017, Spring 2018, Fall 2018, and Spring 2019. Transparency for your academic success.
+			</p>
+			<p>
+				Grade distributions are historical data on how many letter grades of each kind were handed out in classes. Picking classes with favorable grade distributions helps you increase your chance of academic success and timely graduation.
+			</p>
+			<div class="buttons">
+				<button onclick="document.getElementById('main').scrollIntoView({behavior: 'smooth', block: 'start'})">
+					Get Started
+				</button>
+				<button class="disabled" onclick="document.getElementBySelecter('#search h2').scrollIntoView({behavior: 'smooth', block: 'start'})" title="Sorry, at the moment we are not in need of donations!">
+					Support Us
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Search section -->
+	<div id="main">
+		<div id="search">
+			<h2 class="content-header">Search</h2>
+			<hr/>
+			<form onsubmit="instantFind()" action="javascript:void(0)">
+				<div class="form-item">
+					<label for="semester">Semester</label>
+					<select id="semester" name="semester">
+						<option value="all">All semesters</option>
+						<option value="2017 Fall">2017 Fall - 1178</option>
+						<option value="2018 Spring">2018 Spring - 1181</option>
+						<option value="2018 Fall">2018 Fall - 1188</option>
+						<option value="2019 Spring">2019 Spring - 1191</option>
+					</select>
+				</div>
+				<div class="double-form-item">
+					<div class="form-item">
+						<label for="subject">Subject</label>
+						<input id="subject" name="subject" placeholder="MATH" oninput="instantFind()">
+					</div>
+					<div class="form-item">
+						<label for="course">Course</label>
+						<input id="course" name="course" placeholder="1710" oninput="instantFind()">
+					</div>
+				</div>
+				<div class="form-item">
+					<label for="desc">Class Name</label>
+					<input id="desc" name="desc" placeholder="CALCULUS I" oninput="instantFind()">
+				</div>
+				<div class="form-item">
+					<label for="instructor">Instructor</label>
+					<input id="instructor" name="instructor" placeholder="Smith" oninput="instantFind()">
+				</div>
+				<button id="search-button">
+					Search
+				</button>
+			</form>
+			<div id="sections">
+				<h2 class="content-header">Select</h2>
+				<hr/>
+				<ul id="select_result">
+					<p>
+						Any classes found matching the search criteria will be listed here
+					</p>
+				</ul>
+			</div>
+		</div>
+		<div id="graph">
+			<div id="results">
+				<h2 class="content-header">Results</h2>
+				<hr/>
+				<div id="chart">
+					Your graph will be displayed here
+				</div>
+			</div>
+			<div id="share" class="form-item">
+				<label for="sharelink">Share</label>
+				<input id="sharelink" name="sharelink" type="text" onclick="this.setSelectionRange(0, this.value.length)">
+			</div>
+			<div id="grade-key">
+				<h3 class="content-header">Grading Key</h2>
+				<ul>
+					<li>
+						<span class="accent">A</span> - Excellent
+						&nbsp;|&nbsp;
+						<span class="accent">B</span> - Good
+					</li>
+					<li>
+						<span class="accent">C</span> - Fair
+						&nbsp;|&nbsp;
+						<span class="accent">D</span> - Passing
+					</li>
+					<li>
+						<span class="accent">F</span> - Fail
+						&nbsp;|&nbsp;
+						<span class="accent">NP</span> - Not Passed
+					</li>
+					<li>
+						<span class="accent">I</span> - Incomplete
+					</li>
+					<li>
+						<span class="accent">W</span> - Withdrawal, No Penalty
+						&nbsp;|&nbsp;
+						<span class="accent">WR</span> - Withdrawal, Failure
+					</li>
+					<li>
+						<span class="accent">PR</span> - Thesis Progress
+						&nbsp;|&nbsp;
+						<span class="accent">NPR</span> - No Thesis Progress
+					</li>
+					<li>
+						<span class="accent">Z</span> - Placeholder for improperly recorded grades
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer section -->
+	<div id="footer">
+		<p>
+			<div>
+				<span class="line">
+				&copy; 2018&ndash;2020 the UNT Grade Distributions Team:
+				<span class="line">
+					<span class="line">
+						<a href="https://garrettgu.com" target="_blank" rel="noopener noreferrer">Garrett Gu</a>,
+						<a href="https://jeffw.xyz" target="_blank" rel="noopener noreferrer">Jeffrey Wang</a>,
+						<a href="https://www.linkedin.com/in/josephwickline/" target="_blank" rel="noopener noreferrer">Joseph Wickline</a>,
+					</span>
+					<span class="line">
+						<a href="http://prestja.com" target="_blank" rel="noopener noreferrer">Jacob Preston</a>,
+						<a href="mailto:JordanHamilton@my.unt.edu" target="_blank" rel="noopener noreferrer">Jordan Hamilton</a>,
+						<a href="https://jakergrossman.xyz" target="_blank" rel="noopener noreferrer">Jake Grossman</a>.
+					</span>
+				</span>
+			</div>
+		</p>
+		<p>
+			<span class="line">
+				You may download distribution data at no
+			</span>
+			<span class="line">
+				cost from <a href="https://github.com/jeffw16/unt-grade-distributions/tree/master/static"> this</a> GitHub repository.
+			</span>
+		</p>
+		<p>
+			<span class="line">
+				<span class="line">Some functionality borrowed from the</span>
+				<span class="line">UT Catalyst Grade Distributions tool.</span>
+			</span>
+			<span class="line">
+				<span class="line">Not affiliated with or sponsored</span>
+				<span class="line">by the University of North Texas.</span>
+			</span>
+		</p>
+	</div>
+
+	<!-- banner -->
+	<div id="banner">
+		<div>
+			<span class="line">
+				(2/18/2020)
+			</span>
+			<span class="line">
+				We are currently working on getting grade distributions for Fall 2019.
+			</span>
+			<span class="line">
+				Updates will be sent to
+			</span>
+			<span class="line">
+				<a href="https://www.reddit.com/r/UNT">the UNT subreddit</a>.
+			</span>
+			<span class="line">
+			 &ndash; The UNT Grade Distributions Team
+			</span>
+		</div>
+		<button onclick="closeBanner()">X</button>
+	</div>
+
+	<!-- Additional JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="nedb.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="index.js"></script>
+	<script>
+		$(function () {
+			if (grades !== null) {
+				var term = getParameterByName("term");
+				var subj = getParameterByName("subj");
+				var num = getParameterByName("num");
+				var sect = getParameterByName("sect");
+				var desc = getParameterByName("desc");
+				var prof = getParameterByName("prof");
+				var grades = JSON.parse(atob(getParameterByName("grades")));
+				var result = { term, subj, num, sect, desc, prof, grades };
+				compileChart(result);
+			}
+		});
+	</script>
+</body>
 </html>
