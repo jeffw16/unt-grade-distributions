@@ -191,7 +191,7 @@ button {
 @media screen and (min-width: 968px) {
 	#main {
 		flex-direction: row;
-		height: 100vh;
+		height: 110vh;
 	}
 
 	#search {
