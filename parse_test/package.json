@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "papaparse": "^4.4.0",
+    "papaparse": "^5.2.0",
     "webpack": "^4.10.2",
     "webpack-cli": "^2.1.5"
   }
