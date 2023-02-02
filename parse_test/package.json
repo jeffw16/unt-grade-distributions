@@ -12,6 +12,6 @@
   "dependencies": {
     "papaparse": "^5.2.0",
     "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.5"
+    "webpack-cli": "^5.0.1"
   }
 }
